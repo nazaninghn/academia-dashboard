@@ -44,7 +44,7 @@ export default function ProjectStats() {
             className="glass motion hover-lift group flex h-[76px] items-center gap-3 rounded-2xl px-4"
           >
             <div
-              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ring-1 ring-inset ring-white/50 ${styleByTone[stat.tone]}`}
+              className={`card-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ring-1 ring-inset ring-white/50 ${styleByTone[stat.tone]}`}
             >
               <Icon size={20} />
             </div>

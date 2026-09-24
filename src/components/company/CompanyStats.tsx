@@ -43,7 +43,7 @@ export default function CompanyStats() {
             className="glass motion hover-lift flex h-[76px] items-center gap-3 rounded-2xl px-4"
           >
             <div
-              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ring-1 ring-inset ring-white/50 ${styleByKind[stat.kind]}`}
+              className={`card-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ring-1 ring-inset ring-white/50 ${styleByKind[stat.kind]}`}
             >
               <Icon size={19} />
             </div>

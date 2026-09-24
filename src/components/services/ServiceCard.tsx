@@ -35,7 +35,7 @@ export default function ServiceCard({ service }: { service: ServiceCardType }) {
         <div className="flex flex-1 flex-col">
           <div className="flex items-start gap-2.5">
             <div
-              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ring-1 ring-inset ring-white/50 ${style}`}
+              className={`card-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ring-1 ring-inset ring-white/50 ${style}`}
             >
               <Icon size={19} />
             </div>

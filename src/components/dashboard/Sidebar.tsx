@@ -114,35 +114,55 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
               key={item.label}
               href={item.href}
               onClick={onClose}
+              aria-current={isActive ? "page" : undefined}
               className={`
-                group mb-1 flex w-full items-center gap-3 rounded-xl
-                px-3 py-3 text-left text-[12px]
-                transition-all duration-300 ease-out
+                nav-item group relative isolate mb-1 flex w-full items-center gap-3
+                overflow-hidden rounded-xl px-3 py-2 text-left text-[12px]
+                outline-none focus-visible:ring-2 focus-visible:ring-teal/50
                 ${
                   isActive
-                    ? "scale-[1.02] bg-gradient-to-r from-sky to-teal text-white shadow-lg shadow-teal/30"
-                    : "text-[#173b59]/60 hover:bg-[#173b59]/5 hover:text-[#173b59] active:scale-[0.98]"
+                    ? "nav-item-active bg-gradient-to-r from-sky to-teal text-white shadow-lg shadow-teal/30"
+                    : "text-[#173b59]/60 hover:text-[#173b59] focus-visible:text-[#173b59]"
                 }
               `}
             >
-              <Icon
-                size={18}
+              {isActive ? (
+                // Light sweep across the active pill on hover
+                <span aria-hidden="true" className="nav-shine pointer-events-none absolute inset-0" />
+              ) : (
+                <>
+                  {/* Wash that slides in from the left */}
+                  <span
+                    aria-hidden="true"
+                    className="nav-wash pointer-events-none absolute inset-0 -z-10 rounded-xl bg-gradient-to-r from-sky/25 via-sky-light/20 to-transparent"
+                  />
+                  {/* Accent bar on the leading edge */}
+                  <span
+                    aria-hidden="true"
+                    className="nav-accent pointer-events-none absolute left-0 top-1/2 w-[3px] -translate-y-1/2 rounded-r-full bg-gradient-to-b from-sky to-teal"
+                  />
+                </>
+              )}
+
+              <span
                 className={`
-                  shrink-0 transition-transform duration-300
+                  nav-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg
                   ${
                     isActive
-                      ? "text-white"
-                      : "text-[#173b59]/50 group-hover:scale-110 group-hover:text-teal"
+                      ? "bg-white/20 text-white"
+                      : "text-[#173b59]/50 group-hover:bg-white group-hover:text-teal group-hover:shadow-md group-hover:shadow-teal/15"
                   }
                 `}
-              />
+              >
+                <Icon size={17} />
+              </span>
 
-              <span className="truncate">{t(item.label)}</span>
+              <span className="nav-label truncate">{t(item.label)}</span>
 
               {item.badge != null && (
                 <span
                   className={`
-                    ml-auto flex h-5 w-5 items-center justify-center rounded-full text-[10px]
+                    nav-badge ml-auto flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px]
                     ${isActive ? "bg-white text-teal" : "bg-orange text-white"}
                   `}
                 >

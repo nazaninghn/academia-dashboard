@@ -32,7 +32,7 @@ export default function ServiceHighlights() {
           return (
             <div key={item.id} className="flex items-center gap-3">
               <div
-                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ring-1 ring-inset ring-white/50 ${styleByKind[item.iconKind]}`}
+                className={`card-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ring-1 ring-inset ring-white/50 ${styleByKind[item.iconKind]}`}
               >
                 <Icon size={19} />
               </div>

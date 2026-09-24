@@ -23,7 +23,7 @@ export default function StatCard({
   return (
     <div className="glass motion hover-lift group flex h-[86px] items-center gap-4 rounded-2xl px-4">
       <div
-        className={`flex h-11 w-11 items-center justify-center rounded-xl ring-1 ring-inset ring-white/50 ${iconBg} ${iconColor}`}
+        className={`card-icon flex h-11 w-11 items-center justify-center rounded-xl ring-1 ring-inset ring-white/50 ${iconBg} ${iconColor}`}
       >
         {icon}
       </div>

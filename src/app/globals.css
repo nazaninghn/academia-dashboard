@@ -73,10 +73,18 @@ body {
     background 0.25s ease, border-color 0.25s ease;
 }
 
-.hover-lift:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 40px -14px rgba(23, 59, 89, 0.4),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.7);
+/* Lift is only applied on devices with a real hover (not touch screens) */
+@media (hover: hover) {
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 44px -16px rgba(23, 59, 89, 0.38),
+      0 10px 24px -14px rgba(78, 151, 167, 0.45),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.75);
+  }
+
+  .hover-lift:active {
+    transform: translateY(-1px);
+  }
 }
 
 .hover-row:hover {
@@ -205,5 +213,557 @@ body {
   .logo-hover:hover .logo-mark,
   .logo-hover:focus-visible .logo-mark {
     transform: none;
+  }
+}
+
+/* ---- Sidebar menu item hover ---- */
+
+.nav-item,
+.nav-item .nav-wash,
+.nav-item .nav-accent,
+.nav-item .nav-icon,
+.nav-item .nav-label,
+.nav-item .nav-badge {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease, height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-item .nav-wash {
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+}
+
+.nav-item .nav-accent {
+  height: 0;
+}
+
+.nav-item:hover .nav-wash,
+.nav-item:focus-visible .nav-wash {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.nav-item:hover .nav-accent,
+.nav-item:focus-visible .nav-accent {
+  height: 60%;
+}
+
+.nav-item:hover .nav-icon,
+.nav-item:focus-visible .nav-icon {
+  transform: translateY(-1px) rotate(-6deg) scale(1.08);
+}
+
+.nav-item:hover .nav-label,
+.nav-item:focus-visible .nav-label {
+  transform: translateX(3px);
+}
+
+.nav-item:hover .nav-badge {
+  transform: scale(1.15);
+}
+
+.nav-item:active {
+  transform: scale(0.98);
+}
+
+/* Active pill: gentle lift plus a light sweep on hover */
+.nav-item-active {
+  transform: scale(1.02);
+}
+
+.nav-item-active:hover {
+  transform: scale(1.03);
+}
+
+.nav-item-active:hover .nav-icon {
+  transform: scale(1.08);
+}
+
+.nav-item .nav-shine {
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 65%
+  );
+  background-size: 250% 100%;
+  background-position: 150% 0;
+}
+
+.nav-item:hover .nav-shine {
+  background-position: -50% 0;
+  transition: background-position 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-item,
+  .nav-item .nav-wash,
+  .nav-item .nav-accent,
+  .nav-item .nav-icon,
+  .nav-item .nav-label,
+  .nav-item .nav-badge,
+  .nav-item .nav-shine {
+    transition: none;
+  }
+
+  .nav-item:hover .nav-icon,
+  .nav-item:hover .nav-label,
+  .nav-item:hover .nav-badge,
+  .nav-item:active,
+  .nav-item-active,
+  .nav-item-active:hover {
+    transform: none;
+  }
+}
+
+/* ---- Card hover: cursor spotlight + glowing edge ---- */
+
+/*
+ * --mx / --my are set by the pointer listener in DashboardShell, so the
+ * light follows the cursor. Both layers sit on pseudo-elements, so no
+ * card markup had to change.
+ */
+.glass,
+.hover-lift {
+  position: relative;
+  isolation: isolate;
+  --mx: 50%;
+  --my: 0%;
+}
+
+.glass::before,
+.hover-lift::before,
+.glass::after,
+.hover-lift::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+/* Soft light pooled under the cursor (behind the card's content) */
+.glass::before,
+.hover-lift::before {
+  z-index: -1;
+  background: radial-gradient(
+    320px circle at var(--mx) var(--my),
+    rgba(255, 255, 255, 0.32),
+    transparent 65%
+  );
+}
+
+/* 1px teal edge that brightens near the cursor */
+.glass::after,
+.hover-lift::after {
+  padding: 1px;
+  background: radial-gradient(
+    220px circle at var(--mx) var(--my),
+    rgba(78, 151, 167, 0.75),
+    rgba(133, 213, 246, 0.35) 45%,
+    transparent 75%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+@media (hover: hover) {
+  .glass:hover::before,
+  .glass:hover::after,
+  .hover-lift:hover::before,
+  .hover-lift:hover::after {
+    opacity: 1;
+  }
+
+  /* Stat-card icon tiles pop and tilt */
+  .card-icon {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover .card-icon {
+    transform: translateY(-2px) rotate(-8deg) scale(1.1);
+    box-shadow: 0 8px 18px -8px rgba(23, 59, 89, 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion,
+  .card-icon {
+    transition: none;
+  }
+
+  .hover-lift:hover,
+  .hover-lift:active,
+  .hover-lift:hover .card-icon {
+    transform: none;
+  }
+}
+
+/* ---- Button hover ---- */
+
+/*
+ * One layer of motion for every button, keyed off the Tailwind classes each
+ * button style already uses. `~=` matches a whole class name, so
+ * [class~="bg-teal"] does not match "bg-teal/10" or "hover:bg-teal".
+ * Toggle switches and pressed toggles (language switcher) are left alone.
+ */
+button:not([role="switch"]):not([aria-pressed]):not(:disabled) {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease, background-size 0.35s ease;
+}
+
+button:not([role="switch"]):not([aria-pressed]) svg {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Primary: solid teal or navy gradient */
+button:is([class~="bg-teal"], [class~="from-[#0f3552]"]):not([aria-pressed]) {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+button:is([class~="bg-teal"], [class~="from-[#0f3552]"]):not([aria-pressed])::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 65%
+  );
+  background-size: 250% 100%;
+  background-position: 150% 0;
+}
+
+@media (hover: hover) {
+  button:is([class~="bg-teal"], [class~="from-[#0f3552]"]):not([aria-pressed]):not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -10px rgba(78, 151, 167, 0.7),
+      0 4px 10px -6px rgba(23, 59, 89, 0.4);
+  }
+
+  button:is([class~="bg-teal"], [class~="from-[#0f3552]"]):not([aria-pressed]):hover::after {
+    background-position: -50% 0;
+    transition: background-position 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Soft pills: white glass buttons, filter chips, pagination */
+  button:is([class~="bg-white/70"], [class~="bg-white/60"]):not(:disabled):hover {
+    transform: translateY(-1px);
+    border-color: rgba(78, 151, 167, 0.45);
+    color: var(--color-teal);
+    box-shadow: 0 8px 18px -10px rgba(23, 59, 89, 0.35);
+  }
+
+  /* Icon-only buttons: pop and tilt the glyph */
+  button:has(> svg:only-child):not([aria-pressed]):hover svg {
+    transform: scale(1.15) rotate(-8deg);
+  }
+
+  /* Close buttons spin their X instead */
+  button[aria-label^="Close"]:hover svg,
+  button[aria-label^="Kapat"]:hover svg {
+    transform: rotate(90deg);
+  }
+
+  /* Leading icon next to a label: small pop */
+  button:not([role="switch"]):hover > svg:first-child:not(:only-child) {
+    transform: scale(1.12) rotate(-6deg);
+  }
+
+  /* Trailing icon after a label: nudge forward (chevrons nudge down) */
+  button:not([role="switch"]):hover > svg:last-child:not(:first-child) {
+    transform: translateX(3px);
+  }
+
+  button:not([role="switch"]):hover > svg.lucide-chevron-down:last-child:not(:first-child) {
+    transform: translateY(2px);
+  }
+}
+
+/* Text links: underline draws in from the left */
+button[class~="text-teal"]:not([class*="rounded"]) {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+}
+
+@media (hover: hover) {
+  button[class~="text-teal"]:not([class*="rounded"]):hover {
+    background-size: 100% 1px;
+  }
+}
+
+/* Press feedback everywhere (gentler for full-width row buttons) */
+button:not([role="switch"]):not([aria-pressed]):not(:disabled):active {
+  transform: scale(0.96);
+}
+
+button[class~="w-full"]:not([role="switch"]):not(:disabled):active {
+  transform: scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button,
+  button svg {
+    transition: none !important;
+  }
+
+  button:hover,
+  button:active,
+  button:hover svg {
+    transform: none !important;
+  }
+}
+
+/* ---- Input hover & focus ---- */
+
+/*
+ * Two shapes of field exist: bare fields (settings form: input / select /
+ * textarea with their own border) and search pills (a rounded wrapper div
+ * holding an icon + borderless input). Both get the same teal language.
+ */
+
+/* Bare fields */
+input:is([type="text"], [type="email"], [type="search"], :not([type])),
+select,
+textarea {
+  transition: border-color 0.25s ease, background-color 0.25s ease,
+    box-shadow 0.3s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  transition: opacity 0.25s ease;
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  opacity: 0.45;
+}
+
+/* Only fields that draw their own border; pill inputs are borderless */
+:is(input, select, textarea)[class~="border"]:hover {
+  border-color: rgba(78, 151, 167, 0.4);
+  background-color: rgba(255, 255, 255, 0.88);
+}
+
+:is(input, select, textarea)[class~="border"]:focus {
+  border-color: rgba(78, 151, 167, 0.7);
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(78, 151, 167, 0.18),
+    0 6px 16px -10px rgba(23, 59, 89, 0.35);
+}
+
+/* Select chevron / field icons sitting next to the control */
+.relative:has(> :is(select, input, textarea)) > svg {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 0.25s ease;
+}
+
+.relative:has(> :is(select, input, textarea):hover) > svg,
+.relative:has(> :is(select, input, textarea):focus) > svg {
+  color: var(--color-teal);
+}
+
+/* Tailwind's -translate-y-1/2 uses the separate `translate` property,
+   so only rotation is needed here. */
+.relative:has(> select:focus) > svg {
+  transform: rotate(180deg);
+}
+
+/* Textarea character counter picks up the accent while typing */
+.relative:has(> textarea:focus) > span {
+  color: var(--color-teal);
+  transition: color 0.25s ease;
+}
+
+/* Search pills: wrapper that contains a borderless input */
+div[class~="rounded-full"]:has(> input:not([type="checkbox"])) {
+  transition: border-color 0.25s ease, background-color 0.25s ease,
+    box-shadow 0.3s ease;
+}
+
+div[class~="rounded-full"]:has(> input:not([type="checkbox"])) > svg {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 0.25s ease;
+}
+
+div[class~="rounded-full"]:has(> input:not([type="checkbox"])):hover {
+  border-color: rgba(78, 151, 167, 0.4);
+  background-color: rgba(255, 255, 255, 0.88);
+}
+
+div[class~="rounded-full"]:has(> input:not([type="checkbox"])):focus-within {
+  border-color: rgba(78, 151, 167, 0.7);
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(78, 151, 167, 0.18),
+    0 8px 20px -12px rgba(23, 59, 89, 0.4);
+}
+
+div[class~="rounded-full"]:has(> input:not([type="checkbox"])):focus-within > svg:first-child {
+  color: var(--color-teal);
+}
+
+@media (hover: hover) {
+  div[class~="rounded-full"]:has(> input:not([type="checkbox"])):hover > svg:first-child {
+    color: var(--color-teal);
+    transform: scale(1.12) rotate(-10deg);
+  }
+}
+
+/* Checkboxes */
+input[type="checkbox"] {
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.25s ease;
+}
+
+@media (hover: hover) {
+  input[type="checkbox"]:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 3px rgba(78, 151, 167, 0.18);
+  }
+}
+
+input[type="checkbox"]:checked {
+  animation: check-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+input[type="checkbox"]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(78, 151, 167, 0.35);
+}
+
+@keyframes check-pop {
+  0% {
+    transform: scale(0.8);
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  input,
+  select,
+  textarea,
+  .relative:has(> :is(select, input, textarea)) > svg,
+  div[class~="rounded-full"]:has(> input) > svg {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  div[class~="rounded-full"]:has(> input):hover > svg:first-child,
+  input[type="checkbox"]:hover {
+    transform: none !important;
+  }
+
+  .relative:has(> select:focus) > svg {
+    transform: none !important;
+  }
+}
+
+/* ---- Table row hover ---- */
+
+/*
+ * Applies to every data row (empty-state rows with a colspan are skipped).
+ * Modern browsers paint a <tr>'s background across the whole row, so the
+ * wash is a background-image whose width animates from 0 to 100%.
+ */
+tbody tr:not(:has(> td[colspan])) {
+  background-image: linear-gradient(
+    90deg,
+    rgba(133, 213, 246, 0.28),
+    rgba(171, 226, 244, 0.16) 45%,
+    rgba(255, 255, 255, 0.35)
+  );
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s ease;
+}
+
+/* Accent bar on the leading edge */
+tbody tr:not(:has(> td[colspan])) > td:first-child {
+  box-shadow: inset 0 0 0 0 var(--color-teal);
+  transition: box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Things inside the row that react to hover */
+tbody tr:not(:has(> td[colspan])) > td:first-child > *,
+tbody tr:not(:has(> td[colspan])) [class~="text-[#163b5b]"][class~="font-semibold"],
+tbody tr:not(:has(> td[colspan])) [class~="shrink-0"]:is([class~="ring-white/50"], [class~="bg-gradient-to-br"]),
+tbody tr:not(:has(> td[colspan])) > td:last-child button {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+/* Selected row (Tasks board) keeps its accent bar */
+tbody tr[class~="bg-white/60"] > td:first-child {
+  box-shadow: inset 3px 0 0 0 var(--color-teal);
+}
+
+@media (hover: hover) {
+  tbody tr:not(:has(> td[colspan])):hover {
+    background-size: 100% 100%;
+  }
+
+  tbody tr:not(:has(> td[colspan])):hover > td:first-child {
+    box-shadow: inset 3px 0 0 0 var(--color-teal);
+  }
+
+  /* Leading cell content slides in slightly (skipped for checkbox cells) */
+  tbody tr:not(:has(> td[colspan])):hover > td:first-child:not(:has(input)) > * {
+    transform: translateX(4px);
+  }
+
+  /* Primary label picks up the accent */
+  tbody tr:not(:has(> td[colspan])):hover [class~="text-[#163b5b]"][class~="font-semibold"] {
+    color: var(--color-teal);
+  }
+
+  /* File / certificate icon tiles and avatars pop */
+  tbody tr:not(:has(> td[colspan])):hover [class~="shrink-0"]:is([class~="ring-white/50"], [class~="bg-gradient-to-br"]) {
+    transform: scale(1.1) rotate(-6deg);
+    box-shadow: 0 6px 14px -8px rgba(23, 59, 89, 0.45);
+  }
+
+  /* Row actions rest softer and come forward on hover */
+  tbody tr:not(:has(> td[colspan])) > td:last-child button {
+    opacity: 0.65;
+  }
+
+  tbody tr:not(:has(> td[colspan])):hover > td:last-child button {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  tbody tr,
+  tbody tr > td,
+  tbody tr * {
+    transition: none !important;
+  }
+
+  tbody tr:hover > td:first-child > *,
+  tbody tr:hover [class~="shrink-0"] {
+    transform: none !important;
   }
 }

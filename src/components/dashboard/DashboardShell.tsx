@@ -35,6 +35,26 @@ export default function DashboardShell({ children }: DashboardShellProps) {
     };
   }, [isSidebarOpen]);
 
+  // Feed the cursor position to the hovered card so its spotlight and
+  // glowing edge follow the mouse (see "Card hover" in globals.css).
+  useEffect(() => {
+    if (!window.matchMedia("(hover: hover)").matches) return;
+
+    const onPointerMove = (event: PointerEvent) => {
+      const card = (event.target as Element | null)?.closest<HTMLElement>(
+        ".glass, .hover-lift",
+      );
+      if (!card) return;
+
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+      card.style.setProperty("--my", `${event.clientY - rect.top}px`);
+    };
+
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    return () => window.removeEventListener("pointermove", onPointerMove);
+  }, []);
+
   return (
     // overflow-x-clip (not overflow-hidden) so the sticky header keeps working
     <div className="relative min-h-screen overflow-x-clip">
