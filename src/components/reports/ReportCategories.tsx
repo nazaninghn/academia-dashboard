@@ -9,7 +9,7 @@ export default function ReportCategories() {
 
   return (
     <section className="glass motion hover-lift rounded-2xl p-4 sm:p-5">
-      <h3 className="text-[13px] font-semibold text-[#163b5b]">
+      <h3 className="text-[13px] font-semibold text-ink">
         {t("Report Categories")}</h3>
 
       <ul className="mt-3 flex flex-col gap-1">
@@ -18,7 +18,7 @@ export default function ReportCategories() {
             <button className="flex w-full items-center gap-3 rounded-xl px-2 py-2 text-left transition-colors hover:bg-white/60">
               <ReportFileIcon kind={category.kind} size={9} />
               <div className="min-w-0 flex-1">
-                <p className="truncate text-[12px] font-semibold text-[#163b5b]">
+                <p className="truncate text-[12px] font-semibold text-ink">
                   {t(category.label)}
                 </p>
                 <p className="truncate text-[10px] text-slate-400">

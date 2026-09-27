@@ -18,8 +18,8 @@ import { useI18n } from "@/i18n/I18nProvider";
 
 /** Group avatars for non-person conversations. */
 const groupIcon: Partial<Record<ConversationKind, { icon: LucideIcon; style: string }>> = {
-  team: { icon: Users, style: "bg-teal/15 text-teal" },
-  support: { icon: Headphones, style: "bg-sky/25 text-teal" },
+  team: { icon: Users, style: "bg-primary-dark/15 text-primary-dark" },
+  support: { icon: Headphones, style: "bg-primary/25 text-primary-dark" },
   system: { icon: Bell, style: "bg-rose-100/80 text-rose-500" },
 };
 
@@ -78,10 +78,10 @@ export default function ConversationList({
             <button
               key={filter.key}
               onClick={() => setActiveFilter(filter.key)}
-              className={`flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors ${
+              className={`flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] transition-colors ${
                 isActive
-                  ? "bg-teal text-white shadow-sm"
-                  : "border border-white/60 bg-white/60 text-slate-600 hover:bg-white/90"
+                  ? "bg-primary font-bold text-white shadow-sm"
+                  : "font-medium border border-white/60 bg-white/60 text-slate-600 hover:bg-white/90"
               }`}
             >
               {t(filter.label)}
@@ -117,7 +117,7 @@ export default function ConversationList({
         </button>
         <button
           aria-label={t("New message")}
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal text-white shadow-sm transition-colors hover:bg-[#3f8291]"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-white shadow-sm transition-colors hover:bg-primary-dark"
         >
           <Plus size={16} />
         </button>
@@ -144,7 +144,7 @@ export default function ConversationList({
 
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between gap-2">
-                  <p className="truncate text-[12px] font-semibold text-[#163b5b]">
+                  <p className="truncate text-[12px] font-semibold text-ink">
                     {t(c.name)}
                   </p>
                   <span className="shrink-0 text-[10px] text-slate-400">
@@ -160,7 +160,7 @@ export default function ConversationList({
               </div>
 
               {c.unread > 0 && (
-                <span className="mt-1 flex h-4 min-w-4 shrink-0 items-center justify-center rounded-full bg-teal px-1 text-[9px] font-semibold text-white">
+                <span className="mt-1 flex h-4 min-w-4 shrink-0 items-center justify-center rounded-full bg-primary px-1 text-[9px] font-semibold text-white">
                   {c.unread}
                 </span>
               )}

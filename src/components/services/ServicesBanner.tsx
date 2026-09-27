@@ -9,15 +9,15 @@ export default function ServicesBanner() {
 
   return (
     <section className="glass motion hover-lift relative min-h-[130px] overflow-hidden rounded-2xl flex flex-col justify-center">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/70 via-sky-light/40 to-sky/40" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-teal/25 to-transparent" />
-      <div className="animate-floaty pointer-events-none absolute -bottom-10 right-24 h-28 w-72 rounded-[50%] bg-teal/25 blur-2xl" />
-      <div className="animate-floaty-slow pointer-events-none absolute -bottom-12 right-0 h-28 w-56 rounded-[50%] bg-gold/25 blur-2xl" />
-      <div className="animate-floaty pointer-events-none absolute -top-8 left-40 h-24 w-56 rounded-[50%] bg-sky/30 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/70 via-primary/40 to-primary/40" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-primary-dark/25 to-transparent" />
+      <div className="animate-floaty pointer-events-none absolute -bottom-10 right-24 h-28 w-72 rounded-[50%] bg-primary-dark/25 blur-2xl" />
+      <div className="animate-floaty-slow pointer-events-none absolute -bottom-12 right-0 h-28 w-56 rounded-[50%] bg-accent/25 blur-2xl" />
+      <div className="animate-floaty pointer-events-none absolute -top-8 left-40 h-24 w-56 rounded-[50%] bg-primary/30 blur-3xl" />
 
       <div className="relative z-10 flex flex-col justify-center px-5 py-5 sm:px-8">
         <nav className="flex items-center gap-1 text-[11px] text-slate-500">
-          <Link href="/" className="transition-colors hover:text-teal">
+          <Link href="/" className="transition-colors hover:text-primary-dark">
             {t("Home")}</Link>
           <ChevronRight size={12} className="text-slate-400" />
           <span className="font-medium text-slate-600">{t("Services")}</span>
@@ -25,7 +25,7 @@ export default function ServicesBanner() {
 
         <div className="mt-1 flex items-end justify-between gap-4">
           <div>
-            <h1 className="bg-gradient-to-r from-[#0f3552] to-[#2c6d80] bg-clip-text text-[22px] font-bold sm:text-[26px] text-transparent">
+            <h1 className="bg-gradient-to-r from-sidebar to-primary-dark bg-clip-text text-[22px] font-bold sm:text-[26px] text-transparent">
               {t("Our Services")}</h1>
             <p className="mt-1 text-[12px] text-slate-500">
               {t("Expert solutions for a more compliant and sustainable future.")}</p>
@@ -36,7 +36,7 @@ export default function ServicesBanner() {
               {t("Standards today")}</p>
             <p className="text-[12px] font-medium text-slate-600">
               {t("for a better tomorrow.")}</p>
-            <div className="mt-3 ml-auto h-[2px] w-10 rounded-full bg-gradient-to-r from-orange to-gold" />
+            <div className="mt-3 ml-auto h-[2px] w-10 rounded-full bg-gradient-to-r from-accent-dark to-accent" />
           </div>
         </div>
       </div>

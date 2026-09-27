@@ -15,21 +15,21 @@ export default function StatCard({
   value,
   label,
   icon,
-  iconBg = "bg-sky/25",
-  iconColor = "text-teal",
+  iconBg = "bg-primary/25",
+  iconColor = "text-primary-dark",
 }: StatCardProps) {
   const { t } = useI18n();
 
   return (
-    <div className="glass motion hover-lift group flex h-[86px] items-center gap-4 rounded-2xl px-4">
+    <div className="glass motion hover-lift group flex h-[86px] items-center gap-3 rounded-2xl px-3 sm:gap-4 sm:px-4">
       <div
-        className={`card-icon flex h-11 w-11 items-center justify-center rounded-xl ring-1 ring-inset ring-white/50 ${iconBg} ${iconColor}`}
+        className={`card-icon flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ring-1 ring-inset ring-white/50 ${iconBg} ${iconColor}`}
       >
         {icon}
       </div>
 
-      <div>
-        <p className="text-[22px] font-bold leading-none text-[#163b5b]">
+      <div className="min-w-0">
+        <p className="text-[22px] font-bold leading-none text-ink">
           {value}
         </p>
 
@@ -38,7 +38,7 @@ export default function StatCard({
 
       <ArrowRight
         size={15}
-        className={`ml-auto transition-transform group-hover:translate-x-0.5 ${iconColor}`}
+        className={`ml-auto hidden shrink-0 transition-transform sm:block group-hover:translate-x-0.5 ${iconColor}`}
       />
     </div>
   );

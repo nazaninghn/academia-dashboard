@@ -12,7 +12,7 @@ function PlaceholderTab({ label }: { label: string }) {
 
   return (
     <section className="glass rounded-2xl p-10 text-center">
-      <p className="text-[13px] font-semibold text-[#163b5b]">{t(label)}</p>
+      <p className="text-[13px] font-semibold text-ink">{t(label)}</p>
       <p className="mt-1 text-[11.5px] text-slate-400">
         {t("This section is coming soon.")}</p>
     </section>
@@ -35,12 +35,12 @@ export default function CompanyProfileClient() {
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
               className={`relative px-3 py-2.5 text-[12px] font-medium transition-colors ${
-                isActive ? "text-teal" : "text-slate-500 hover:text-slate-700"
+                isActive ? "text-primary-dark" : "text-slate-500 hover:text-slate-700"
               }`}
             >
               {t(tab.label)}
               {isActive && (
-                <span className="absolute inset-x-2 -bottom-px h-0.5 rounded-full bg-teal" />
+                <span className="absolute inset-x-2 -bottom-px h-0.5 rounded-full bg-primary" />
               )}
             </button>
           );

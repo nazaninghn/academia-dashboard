@@ -13,7 +13,7 @@ const configByAction: Record<
 > = {
   uploaded: {
     icon: UploadCloud,
-    style: "bg-sky/25 text-teal",
+    style: "bg-primary/25 text-primary-dark",
     verb: "uploaded a document",
   },
   approved: {
@@ -34,9 +34,9 @@ export default function RecentActivity() {
   return (
     <section className="glass rounded-2xl p-4 sm:p-5">
       <div className="flex items-center justify-between">
-        <h3 className="text-[13px] font-semibold text-[#163b5b]">
+        <h3 className="text-[13px] font-semibold text-ink">
           {t("Recent Activity")}</h3>
-        <button className="text-[11px] font-medium text-teal transition-colors hover:text-[#3f8291]">
+        <button className="text-[11px] font-medium text-primary-dark transition-colors hover:text-primary-dark">
           {t("View All")}</button>
       </div>
 
@@ -57,7 +57,7 @@ export default function RecentActivity() {
 
               <div className="min-w-0 flex-1">
                 <p className="text-[11.5px] leading-4 text-slate-600">
-                  <span className="font-semibold text-[#163b5b]">
+                  <span className="font-semibold text-ink">
                     {t(item.person)}
                   </span>{" "}
                   {t(verb)}

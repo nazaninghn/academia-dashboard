@@ -9,7 +9,7 @@ type TaskRowProps = {
 
 const priorityStyles = {
   High: {
-    dot: "bg-red-500 shadow-[0_0_10px_1px_rgba(239,68,68,0.6)]",
+    dot: "bg-red-500 shadow-[0_0_10px_1px_rgba(220,38,38,0.6)]",
     badge: "bg-red-500/15 text-red-600 ring-1 ring-inset ring-red-500/25",
   },
   Medium: {
@@ -29,7 +29,7 @@ export default function TaskRow({ task }: TaskRowProps) {
         <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${styles.dot}`} />
 
         <div className="min-w-0 flex-1">
-          <p className="truncate text-[13px] font-semibold text-[#163b5b]">
+          <p className="truncate text-[13px] font-semibold text-ink">
             {t(task.title)}
           </p>
           <p className="mt-1 truncate text-[10px] text-slate-500">

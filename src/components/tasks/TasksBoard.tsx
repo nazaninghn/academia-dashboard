@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Search,
   Calendar,
@@ -52,6 +52,21 @@ export default function TasksBoard() {
 
   const selected = taskList.find((t) => t.id === selectedId) ?? null;
 
+  const openTask = (id: string) => {
+    setSelectedId(id);
+    setIsDrawerOpen(true);
+  };
+
+  // Let Escape close the drawer on smaller screens.
+  useEffect(() => {
+    if (!isDrawerOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsDrawerOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isDrawerOpen]);
+
   return (
     <div
       className={`grid grid-cols-1 gap-4 ${
@@ -62,7 +77,7 @@ export default function TasksBoard() {
       <section className="glass rounded-2xl p-4 sm:p-5">
         {/* Toolbar: filters + search */}
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="-mx-4 flex items-center gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0 [&::-webkit-scrollbar]:hidden">
             {taskFilters.map((filter) => {
               const isActive = filter.key === activeFilter;
 
@@ -70,10 +85,10 @@ export default function TasksBoard() {
                 <button
                   key={filter.key}
                   onClick={() => setActiveFilter(filter.key)}
-                  className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors ${
+                  className={`flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] transition-colors ${
                     isActive
-                      ? "bg-teal text-white shadow-sm"
-                      : "border border-white/60 bg-white/60 text-slate-600 hover:bg-white/90"
+                      ? "bg-primary font-bold text-white shadow-sm"
+                      : "font-medium border border-white/60 bg-white/60 text-slate-600 hover:bg-white/90"
                   }`}
                 >
                   {t(filter.label)}
@@ -103,8 +118,73 @@ export default function TasksBoard() {
           </div>
         </div>
 
-        {/* Table */}
-        <div className="mt-4 overflow-x-auto">
+        {/* Phones: stacked cards instead of the wide table */}
+        <ul className="mt-4 space-y-2 md:hidden">
+          {filtered.map((task) => {
+            const isSelected = task.id === selectedId;
+
+            return (
+              <li key={task.id}>
+                <button
+                  type="button"
+                  onClick={() => openTask(task.id)}
+                  className={`w-full rounded-xl border p-3 text-left ${
+                    isSelected
+                      ? "border-primary/40 bg-white/80"
+                      : "border-white/60 bg-white/50"
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="min-w-0">
+                      <p className="text-[13px] font-semibold text-ink">
+                        {t(task.title)}
+                      </p>
+                      <p className="mt-0.5 truncate text-[11px] text-slate-500">
+                        {t(task.project)} · {t(task.projectCategory)}
+                      </p>
+                    </div>
+                    <TaskStatusBadge status={task.status} />
+                  </div>
+
+                  <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
+                    <PriorityBadge priority={task.priority} />
+                    <span
+                      className={`flex items-center gap-1 text-[11px] ${
+                        task.status === "Overdue"
+                          ? "text-rose-500"
+                          : "text-slate-500"
+                      }`}
+                    >
+                      <Calendar size={12} className="shrink-0" />
+                      {t(task.dueDate)} ({t(task.dueNote)})
+                    </span>
+                  </div>
+
+                  <div className="mt-3 flex items-center gap-2 border-t border-white/60 pt-3">
+                    <ConsultantAvatar name={task.assignee.name} />
+                    <div className="min-w-0">
+                      <p className="truncate text-[11.5px] font-medium text-ink">
+                        {t(task.assignee.name)}
+                      </p>
+                      <p className="truncate text-[10px] text-slate-400">
+                        {t(task.assignee.role)}
+                      </p>
+                    </div>
+                  </div>
+                </button>
+              </li>
+            );
+          })}
+
+          {filtered.length === 0 && (
+            <li className="py-10 text-center text-[12px] text-slate-400">
+              {t("No tasks match your filters.")}
+            </li>
+          )}
+        </ul>
+
+        {/* Table (tablet and up) */}
+        <div className="mt-4 hidden overflow-x-auto md:block">
           <table className="w-full min-w-[760px] border-collapse">
             <thead>
               <tr className="border-b border-white/60 text-left text-[11px] font-semibold uppercase tracking-wide text-slate-400">
@@ -112,7 +192,7 @@ export default function TasksBoard() {
                   <input
                     type="checkbox"
                     aria-label={t("Select all")}
-                    className="h-3.5 w-3.5 rounded border-slate-300 accent-teal"
+                    className="h-3.5 w-3.5 rounded border-slate-300 accent-primary-dark"
                   />
                 </th>
                 <th className="px-3 py-3 font-semibold">{t("Task")}</th>
@@ -132,10 +212,7 @@ export default function TasksBoard() {
                 return (
                   <tr
                     key={task.id}
-                    onClick={() => {
-                      setSelectedId(task.id);
-                      setIsDrawerOpen(true);
-                    }}
+                    onClick={() => openTask(task.id)}
                     className={`group cursor-pointer border-b border-white/40 transition-colors ${
                       isSelected ? "bg-white/60" : "hover:bg-white/50"
                     }`}
@@ -144,12 +221,12 @@ export default function TasksBoard() {
                       <input
                         type="checkbox"
                         aria-label={t("Select {name}", { name: t(task.title) })}
-                        className="h-3.5 w-3.5 rounded border-slate-300 accent-teal"
+                        className="h-3.5 w-3.5 rounded border-slate-300 accent-primary-dark"
                       />
                     </td>
 
                     <td className="px-3 py-3">
-                      <p className="text-[12.5px] font-semibold text-[#163b5b]">
+                      <p className="text-[12.5px] font-semibold text-ink">
                         {t(task.title)}
                       </p>
                       <p className="mt-0.5 truncate text-[10px] text-slate-400">
@@ -194,7 +271,7 @@ export default function TasksBoard() {
                       <div className="flex items-center gap-2">
                         <ConsultantAvatar name={task.assignee.name} />
                         <div className="min-w-0">
-                          <p className="truncate text-[11.5px] font-medium text-[#163b5b]">
+                          <p className="truncate text-[11.5px] font-medium text-ink">
                             {t(task.assignee.name)}
                           </p>
                           <p className="truncate text-[10px] text-slate-400">
@@ -233,7 +310,7 @@ export default function TasksBoard() {
         </div>
 
         {/* Footer: count + pagination */}
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="mt-4 flex flex-col-reverse items-center justify-between gap-3 sm:flex-row">
           <p className="text-[11px] text-slate-400">
             {t("Showing {shown} of {total} tasks", {
               shown: filtered.length,
@@ -248,7 +325,7 @@ export default function TasksBoard() {
             >
               <ChevronLeft size={15} />
             </button>
-            <button className="flex h-7 w-7 items-center justify-center rounded-lg bg-teal text-[12px] font-semibold text-white">
+            <button className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-[12px] font-bold text-white">
               1
             </button>
             <button className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/60 bg-white/60 text-[12px] font-medium text-slate-500 transition-colors hover:bg-white/90">

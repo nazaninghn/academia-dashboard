@@ -46,14 +46,14 @@ export default function ChatWindow({
             <button
               onClick={onBack}
               aria-label={t("Back to conversations")}
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-white/70 hover:text-teal lg:hidden"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-white/70 hover:text-primary-dark lg:hidden"
             >
               <ArrowLeft size={17} />
             </button>
           )}
           <ConsultantAvatar name={conversation.name} />
           <div className="min-w-0">
-            <p className="truncate text-[13px] font-semibold text-[#163b5b]">
+            <p className="truncate text-[13px] font-semibold text-ink">
               {t(conversation.name)}
             </p>
             <p className="flex items-center gap-1.5 truncate text-[10.5px] text-slate-400">
@@ -72,7 +72,7 @@ export default function ChatWindow({
             <button
               key={label}
               aria-label={t(label)}
-              className={`h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/70 hover:text-teal ${
+              className={`h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/70 hover:text-primary-dark ${
                 mobile ? "flex" : "hidden sm:flex"
               }`}
             >
@@ -107,7 +107,7 @@ export default function ChatWindow({
               <div
                 className={`min-w-0 max-w-[85%] rounded-2xl sm:max-w-[78%] px-3.5 py-2.5 shadow-sm ${
                   isMe
-                    ? "rounded-br-md bg-teal text-white"
+                    ? "rounded-br-md bg-primary text-white"
                     : "rounded-bl-md bg-white/85 text-slate-700"
                 }`}
               >
@@ -143,7 +143,7 @@ export default function ChatWindow({
         <div className="flex items-center gap-2 rounded-full border border-white/60 bg-white/70 px-3 py-2 shadow-sm">
           <button
             aria-label={t("Attach file")}
-            className="shrink-0 text-slate-400 transition-colors hover:text-teal"
+            className="shrink-0 text-slate-400 transition-colors hover:text-primary-dark"
           >
             <Paperclip size={17} />
           </button>
@@ -156,13 +156,13 @@ export default function ChatWindow({
           />
           <button
             aria-label={t("Add emoji")}
-            className="shrink-0 text-slate-400 transition-colors hover:text-teal"
+            className="shrink-0 text-slate-400 transition-colors hover:text-primary-dark"
           >
             <Smile size={17} />
           </button>
           <button
             aria-label={t("Send message")}
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal text-white transition-colors hover:bg-[#3f8291]"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-white transition-colors hover:bg-primary-dark"
           >
             <Send size={15} />
           </button>

@@ -21,12 +21,12 @@ export default function DocumentRow({ document, icon }: DocumentRowProps) {
   return (
     <div className="glass-row motion hover-row flex flex-col gap-2 rounded-2xl p-3 sm:p-4 lg:flex-row lg:items-center lg:gap-4">
       <div className="flex items-center gap-3 lg:contents">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky/20 text-teal ring-1 ring-inset ring-sky/30 shadow-[0_0_16px_-4px_rgba(133,213,246,0.6)]">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/20 text-primary-dark ring-1 ring-inset ring-primary/30 shadow-[0_0_16px_-4px_rgba(33,182,215,0.6)]">
           {icon}
         </div>
 
         <div className="min-w-0 flex-1">
-          <p className="truncate text-[13px] font-semibold text-[#163b5b]">
+          <p className="truncate text-[13px] font-semibold text-ink">
             {t(document.name)}
           </p>
           <p className="mt-1 truncate text-[10px] text-slate-500">
@@ -46,7 +46,7 @@ export default function DocumentRow({ document, icon }: DocumentRowProps) {
           {t(document.status)}
         </span>
 
-        <ArrowRight size={15} className="shrink-0 text-teal" />
+        <ArrowRight size={15} className="shrink-0 text-primary-dark" />
       </div>
     </div>
   );

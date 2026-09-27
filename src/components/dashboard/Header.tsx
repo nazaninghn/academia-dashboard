@@ -58,11 +58,11 @@ export default function Header({ onMenuClick }: HeaderProps) {
           <button className="relative" aria-label={t("Notifications")}>
             <Bell size={19} />
 
-            <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-orange" />
+            <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-accent-dark" />
           </button>
 
           <div className="motion hover-row flex cursor-pointer items-center gap-2 rounded-full px-1 py-1 sm:gap-3 sm:px-2">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal to-sky text-sm text-white ring-2 ring-white/60 shadow-[0_0_14px_-3px_rgba(78,151,167,0.7)]">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary-dark to-primary text-sm text-white ring-2 ring-white/60 shadow-[0_0_14px_-3px_rgba(8,124,154,0.7)]">
               A
             </div>
 

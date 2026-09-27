@@ -17,7 +17,7 @@ export default function CompanyIdentity() {
           {/* Logo */}
           <div className="flex h-[72px] w-[110px] shrink-0 items-center justify-center rounded-xl border border-white/60 bg-white/80 shadow-sm">
             <div className="text-center leading-none">
-              <p className="text-[16px] font-bold tracking-tight text-[#163b5b]">
+              <p className="text-[16px] font-bold tracking-tight text-ink">
                 {t("ABC")}</p>
               <p className="mt-0.5 text-[7px] font-semibold uppercase tracking-[0.15em] text-slate-400">
                 {t("Manufacturing")}</p>
@@ -25,7 +25,7 @@ export default function CompanyIdentity() {
           </div>
 
           <div className="min-w-0">
-            <h2 className="text-[20px] font-bold text-[#163b5b]">{t(name)}</h2>
+            <h2 className="text-[20px] font-bold text-ink">{t(name)}</h2>
             <p className="mt-0.5 text-[12px] text-slate-500">{t(tagline)}</p>
 
             <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-slate-500">
@@ -39,7 +39,7 @@ export default function CompanyIdentity() {
               </span>
               <a
                 href={`https://${website}`}
-                className="flex items-center gap-1.5 text-teal transition-colors hover:text-[#3f8291]"
+                className="flex items-center gap-1.5 text-primary-dark transition-colors hover:text-primary-dark"
               >
                 <Globe size={13} />
                 {t(website)}

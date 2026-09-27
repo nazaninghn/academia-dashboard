@@ -15,9 +15,9 @@ const iconByKind: Record<ServiceHighlight["iconKind"], LucideIcon> = {
 
 const styleByKind: Record<ServiceHighlight["iconKind"], string> = {
   leaf: "bg-emerald-100/70 text-emerald-600",
-  users: "bg-sky/25 text-teal",
-  shield: "bg-orange/15 text-orange",
-  chart: "bg-teal/15 text-teal",
+  users: "bg-primary/25 text-primary-dark",
+  shield: "bg-accent-dark/15 text-accent-dark",
+  chart: "bg-primary-dark/15 text-primary-dark",
 };
 
 export default function ServiceHighlights() {
@@ -37,7 +37,7 @@ export default function ServiceHighlights() {
                 <Icon size={19} />
               </div>
               <div className="min-w-0">
-                <p className="text-[12.5px] font-semibold text-[#163b5b]">
+                <p className="text-[12.5px] font-semibold text-ink">
                   {t(item.title)}
                 </p>
                 <p className="truncate text-[10.5px] text-slate-400">

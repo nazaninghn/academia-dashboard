@@ -27,7 +27,7 @@ export default function QuickLinks() {
 
   return (
     <section className="glass motion hover-lift rounded-2xl p-4 sm:p-5">
-      <h3 className="text-[13px] font-semibold text-[#163b5b]">{t("Quick Links")}</h3>
+      <h3 className="text-[13px] font-semibold text-ink">{t("Quick Links")}</h3>
 
       <ul className="mt-3 flex flex-col gap-1">
         {links.map((link) => {
@@ -36,7 +36,7 @@ export default function QuickLinks() {
           return (
             <li key={link.id}>
               <button className="flex w-full items-center gap-3 rounded-xl px-2 py-2 text-left transition-colors hover:bg-white/60">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-teal/10 text-teal ring-1 ring-inset ring-white/50">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-dark/10 text-primary-dark ring-1 ring-inset ring-white/50">
                   <Icon size={15} />
                 </span>
                 <span className="text-[12px] font-medium text-slate-600">

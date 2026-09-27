@@ -33,14 +33,14 @@ export default function SettingsProfileSidebar() {
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:flex xl:flex-col">
       {/* Your Profile */}
       <section className="glass rounded-2xl p-4 sm:p-5">
-        <p className="text-[12px] font-semibold text-[#163b5b]">{t("Your Profile")}</p>
+        <p className="text-[12px] font-semibold text-ink">{t("Your Profile")}</p>
 
         <div className="mt-3 flex items-center gap-3">
           <div className="scale-110">
             <ConsultantAvatar name={profileSummary.name} />
           </div>
           <div className="min-w-0">
-            <p className="truncate text-[13px] font-semibold text-[#163b5b]">
+            <p className="truncate text-[13px] font-semibold text-ink">
               {t(profileSummary.name)}
             </p>
             <p className="truncate text-[10.5px] text-slate-400">
@@ -86,7 +86,7 @@ export default function SettingsProfileSidebar() {
       {/* Security */}
       <section className="glass rounded-2xl p-4 sm:p-5">
         <div className="flex items-center justify-between">
-          <p className="text-[12px] font-semibold text-[#163b5b]">{t("Security")}</p>
+          <p className="text-[12px] font-semibold text-ink">{t("Security")}</p>
           <button className="rounded-full border border-white/60 bg-white/70 px-3 py-1.5 text-[11px] font-medium text-slate-600 shadow-sm transition-colors hover:bg-white/90">
             {t("Change Password")}</button>
         </div>
@@ -98,7 +98,7 @@ export default function SettingsProfileSidebar() {
               <li key={toggle.id} className="flex items-start gap-2.5">
                 <Icon size={15} className="mt-0.5 shrink-0 text-slate-400" />
                 <div className="min-w-0 flex-1">
-                  <p className="text-[11.5px] font-semibold text-[#163b5b]">
+                  <p className="text-[11.5px] font-semibold text-ink">
                     {t(toggle.label)}
                   </p>
                   <p className="text-[10px] text-slate-400">
@@ -111,7 +111,7 @@ export default function SettingsProfileSidebar() {
                   aria-label={t("Toggle {name}", { name: t(toggle.label) })}
                   onClick={() => flip(toggle.id)}
                   className={`relative mt-0.5 h-5 w-9 shrink-0 rounded-full transition-colors ${
-                    toggle.enabled ? "bg-teal" : "bg-slate-300"
+                    toggle.enabled ? "bg-primary" : "bg-slate-300"
                   }`}
                 >
                   <span
@@ -127,7 +127,7 @@ export default function SettingsProfileSidebar() {
           <li className="flex items-center gap-2.5 border-t border-white/50 pt-3">
             <Monitor size={15} className="shrink-0 text-slate-400" />
             <div className="min-w-0 flex-1">
-              <p className="text-[11.5px] font-semibold text-[#163b5b]">
+              <p className="text-[11.5px] font-semibold text-ink">
                 {t("Active Sessions")}</p>
               <p className="text-[10px] text-slate-400">
                 {t("Manage your active sessions.")}</p>

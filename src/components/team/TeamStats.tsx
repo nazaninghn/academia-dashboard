@@ -14,9 +14,9 @@ const iconByTone: Record<TeamSummaryStat["tone"], LucideIcon> = {
 };
 
 const styleByTone: Record<TeamSummaryStat["tone"], string> = {
-  teal: "bg-teal/15 text-teal",
+  teal: "bg-primary-dark/15 text-primary-dark",
   green: "bg-emerald-100/70 text-emerald-600",
-  sky: "bg-sky/25 text-teal",
+  sky: "bg-primary/25 text-primary-dark",
   slate: "bg-slate-200/60 text-slate-500",
 };
 
@@ -24,14 +24,14 @@ export default function TeamStats() {
   const { t } = useI18n();
 
   return (
-    <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-[repeat(4,1fr)_auto]">
+    <section className="grid grid-cols-2 gap-3 xl:grid-cols-[repeat(4,1fr)_auto]">
       {teamSummaryStats.map((stat) => {
         const Icon = iconByTone[stat.tone];
 
         return (
           <div
             key={stat.id}
-            className="glass motion hover-lift flex h-[76px] items-center gap-3 rounded-2xl px-4"
+            className="glass motion hover-lift flex h-[76px] items-center gap-3 rounded-2xl px-3 sm:px-4"
           >
             <div
               className={`card-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ring-1 ring-inset ring-white/50 ${styleByTone[stat.tone]}`}
@@ -40,7 +40,7 @@ export default function TeamStats() {
             </div>
 
             <div className="min-w-0">
-              <p className="text-[20px] font-bold leading-none text-[#163b5b]">
+              <p className="text-[20px] font-bold leading-none text-ink">
                 {stat.value}
               </p>
               <p className="mt-1.5 truncate text-[11px] text-slate-500">
@@ -52,8 +52,8 @@ export default function TeamStats() {
       })}
 
       {/* Invite Member action */}
-      <div className="flex h-[76px] items-center sm:col-span-2 xl:col-span-1">
-        <button className="flex h-full flex-1 items-center justify-center gap-2 rounded-2xl bg-teal px-5 text-[13px] font-semibold text-white shadow-sm transition-colors hover:bg-[#3f8291]">
+      <div className="col-span-2 flex h-[76px] items-center xl:col-span-1">
+        <button className="flex h-full flex-1 items-center justify-center gap-2 rounded-2xl bg-primary px-5 text-[13px] font-bold text-white shadow-sm transition-colors hover:bg-primary-dark">
           <UserPlus size={16} />
           {t("Invite Member")}</button>
       </div>

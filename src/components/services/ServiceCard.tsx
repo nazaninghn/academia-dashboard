@@ -15,11 +15,11 @@ import type { ServiceCard as ServiceCardType, ServiceIconKind } from "@/types/da
 import { useI18n } from "@/i18n/I18nProvider";
 
 const iconByKind: Record<ServiceIconKind, { icon: LucideIcon; style: string }> = {
-  shield: { icon: ShieldCheck, style: "bg-sky/25 text-teal" },
+  shield: { icon: ShieldCheck, style: "bg-primary/25 text-primary-dark" },
   leaf: { icon: Leaf, style: "bg-emerald-100/80 text-emerald-600" },
-  users: { icon: Users, style: "bg-orange/15 text-orange" },
+  users: { icon: Users, style: "bg-accent-dark/15 text-accent-dark" },
   cap: { icon: GraduationCap, style: "bg-violet-100/80 text-violet-600" },
-  search: { icon: Search, style: "bg-teal/15 text-teal" },
+  search: { icon: Search, style: "bg-primary-dark/15 text-primary-dark" },
   chip: { icon: Cpu, style: "bg-rose-100/80 text-rose-500" },
 };
 
@@ -40,7 +40,7 @@ export default function ServiceCard({ service }: { service: ServiceCardType }) {
               <Icon size={19} />
             </div>
             <div className="min-w-0">
-              <h3 className="text-[14px] font-semibold text-[#163b5b]">
+              <h3 className="text-[14px] font-semibold text-ink">
                 {t(service.title)}
               </h3>
               <p className="text-[10.5px] text-slate-400">{t(service.tagline)}</p>
@@ -82,7 +82,7 @@ export default function ServiceCard({ service }: { service: ServiceCardType }) {
       <div className="mt-4 flex items-center gap-2">
         <button className="flex-1 rounded-full border border-white/60 bg-white/70 px-3 py-2 text-[12px] font-medium text-slate-600 shadow-sm transition-colors hover:bg-white/90">
           {t("Learn More")}</button>
-        <button className="flex flex-1 items-center justify-center gap-1.5 rounded-full bg-teal px-3 py-2 text-[12px] font-semibold text-white shadow-sm transition-colors hover:bg-[#3f8291]">
+        <button className="flex flex-1 items-center justify-center gap-1.5 rounded-full bg-primary px-3 py-2 text-[12px] font-bold text-white shadow-sm transition-colors hover:bg-primary-dark">
           {t("Request Service")}<ArrowRight size={14} />
         </button>
       </div>

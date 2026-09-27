@@ -12,16 +12,16 @@ import { stats } from "@/data/dashboard";
 const icons = [Layers, ClipboardCheck, CheckCircle2, Award, CalendarDays];
 
 const accents = [
-  { bg: "bg-sky/25", color: "text-teal" },
-  { bg: "bg-orange/15", color: "text-orange" },
-  { bg: "bg-teal/15", color: "text-teal" },
-  { bg: "bg-gold/20", color: "text-gold" },
-  { bg: "bg-sky-light/40", color: "text-teal" },
+  { bg: "bg-primary/25", color: "text-primary-dark" },
+  { bg: "bg-accent-dark/15", color: "text-accent-dark" },
+  { bg: "bg-primary-dark/15", color: "text-primary-dark" },
+  { bg: "bg-accent/20", color: "text-accent" },
+  { bg: "bg-primary/40", color: "text-primary-dark" },
 ];
 
 export default function StatsCards() {
   return (
-    <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+    <section className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
       {stats.map((stat, index) => {
         const Icon = icons[index];
         const accent = accents[index];

@@ -34,23 +34,23 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     <aside
       className={`
         fixed left-0 top-0 z-50 flex h-dvh w-[185px] flex-col overflow-hidden
-        border-r border-[#e6eef3] bg-white text-[#173b59]
-        shadow-2xl shadow-[#173b59]/10
+        border-r border-border bg-surface text-ink
+        shadow-2xl shadow-ink/10
         transition-transform duration-300 ease-out
         ${isOpen ? "translate-x-0" : "-translate-x-full"}
         lg:translate-x-0
       `}
     >
       {/* Soft ambient tints, very subtle on white */}
-      <div className="pointer-events-none absolute -left-10 top-24 h-40 w-40 rounded-full bg-sky/10 blur-3xl" />
-      <div className="pointer-events-none absolute -right-10 bottom-32 h-32 w-32 rounded-full bg-gold/10 blur-3xl" />
+      <div className="pointer-events-none absolute -left-10 top-24 h-40 w-40 rounded-full bg-primary/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-10 bottom-32 h-32 w-32 rounded-full bg-accent/10 blur-3xl" />
 
       {/* Mobile-only close button */}
       <button
         type="button"
         onClick={onClose}
         aria-label={t("Close menu")}
-        className="absolute right-2 top-2 z-10 flex h-8 w-8 items-center justify-center rounded-lg text-[#173b59]/50 transition-colors hover:bg-[#173b59]/5 hover:text-[#173b59] lg:hidden"
+        className="absolute right-2 top-2 z-10 flex h-8 w-8 items-center justify-center rounded-lg text-ink/50 transition-colors hover:bg-ink/5 hover:text-ink lg:hidden"
       >
         <X size={18} />
       </button>
@@ -61,12 +61,12 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
           href="/"
           onClick={onClose}
           aria-label={t("Dashboard")}
-          className="logo-hover group relative isolate flex flex-col items-center rounded-2xl px-3 py-2 outline-none focus-visible:ring-2 focus-visible:ring-teal/50"
+          className="logo-hover group relative isolate flex flex-col items-center rounded-2xl px-3 py-2 outline-none focus-visible:ring-2 focus-visible:ring-primary-dark/50"
         >
           {/* Soft halo that blooms behind the logo */}
           <span
             aria-hidden="true"
-            className="logo-glow pointer-events-none absolute inset-0 -z-10 rounded-[40%] bg-[radial-gradient(closest-side,rgba(133,213,246,0.55),rgba(237,181,94,0.25)_60%,transparent)] opacity-0 blur-xl"
+            className="logo-glow pointer-events-none absolute inset-0 -z-10 rounded-[40%] bg-[radial-gradient(closest-side,rgba(33,182,215,0.55),rgba(242,162,58,0.25)_60%,transparent)] opacity-0 blur-xl"
           />
 
           {!logoFailed ? (
@@ -91,12 +91,12 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
               />
             </span>
           ) : (
-            <span className="logo-mark text-[25px] font-bold tracking-tight text-[#173b59]">
+            <span className="logo-mark text-[25px] font-bold tracking-tight text-ink">
               ACADEMIA
             </span>
           )}
 
-          <span className="logo-bar mt-2 h-[3px] w-10 rounded-full bg-gradient-to-r from-orange to-gold" />
+          <span className="logo-bar mt-2 h-[3px] w-10 rounded-full bg-gradient-to-r from-accent-dark to-accent" />
         </Link>
       </div>
 
@@ -118,11 +118,11 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
               className={`
                 nav-item group relative isolate mb-1 flex w-full items-center gap-3
                 overflow-hidden rounded-xl px-3 py-2 text-left text-[12px]
-                outline-none focus-visible:ring-2 focus-visible:ring-teal/50
+                outline-none focus-visible:ring-2 focus-visible:ring-primary-dark/50
                 ${
                   isActive
-                    ? "nav-item-active bg-gradient-to-r from-sky to-teal text-white shadow-lg shadow-teal/30"
-                    : "text-[#173b59]/60 hover:text-[#173b59] focus-visible:text-[#173b59]"
+                    ? "nav-item-active bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg shadow-primary-dark/30"
+                    : "text-ink-secondary hover:text-ink focus-visible:text-ink"
                 }
               `}
             >
@@ -134,12 +134,12 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   {/* Wash that slides in from the left */}
                   <span
                     aria-hidden="true"
-                    className="nav-wash pointer-events-none absolute inset-0 -z-10 rounded-xl bg-gradient-to-r from-sky/25 via-sky-light/20 to-transparent"
+                    className="nav-wash pointer-events-none absolute inset-0 -z-10 rounded-xl bg-gradient-to-r from-primary/15 via-primary/5 to-transparent"
                   />
                   {/* Accent bar on the leading edge */}
                   <span
                     aria-hidden="true"
-                    className="nav-accent pointer-events-none absolute left-0 top-1/2 w-[3px] -translate-y-1/2 rounded-r-full bg-gradient-to-b from-sky to-teal"
+                    className="nav-accent pointer-events-none absolute left-0 top-1/2 w-[3px] -translate-y-1/2 rounded-r-full bg-gradient-to-b from-primary to-primary-dark"
                   />
                 </>
               )}
@@ -150,7 +150,7 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   ${
                     isActive
                       ? "bg-white/20 text-white"
-                      : "text-[#173b59]/50 group-hover:bg-white group-hover:text-teal group-hover:shadow-md group-hover:shadow-teal/15"
+                      : "text-ink-muted group-hover:bg-primary/10 group-hover:text-primary-dark"
                   }
                 `}
               >
@@ -163,7 +163,7 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                 <span
                   className={`
                     nav-badge ml-auto flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px]
-                    ${isActive ? "bg-white text-teal" : "bg-orange text-white"}
+                    ${isActive ? "bg-white text-primary-dark" : "bg-accent-dark text-white"}
                   `}
                 >
                   {item.badge}
@@ -175,17 +175,17 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
       </nav>
 
       {/* Bottom information area */}
-      <div className="relative border-t border-[#e6eef3] p-4">
-        <div className="rounded-2xl border border-[#e6eef3] bg-[#f6fafc] p-4">
-          <p className="text-[11px] leading-5 text-[#173b59]/70">
+      <div className="relative border-t border-border p-4">
+        <div className="rounded-2xl border border-border bg-background p-4">
+          <p className="text-[11px] leading-5 text-ink-secondary">
             {t("Your Partner")}<br />
             {t("in a Sustainable")}<br />
             {t("Future")}</p>
 
-          <div className="mt-3 h-[2px] w-8 bg-gradient-to-r from-orange to-gold" />
+          <div className="mt-3 h-[2px] w-8 bg-gradient-to-r from-accent-dark to-accent" />
         </div>
 
-        <p className="mt-5 text-center text-[10px] text-[#173b59]/40">
+        <p className="mt-5 text-center text-[10px] text-ink-muted">
           {t("© 2024 Academia")}</p>
       </div>
     </aside>

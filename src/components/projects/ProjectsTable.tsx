@@ -54,7 +54,7 @@ export default function ProjectsTable() {
     <section className="glass rounded-2xl p-4 sm:p-5">
       {/* Toolbar: filters + search + actions */}
       <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="-mx-4 flex items-center gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0 [&::-webkit-scrollbar]:hidden">
           {projectFilters.map((filter) => {
             const isActive = filter.key === activeFilter;
 
@@ -62,10 +62,10 @@ export default function ProjectsTable() {
               <button
                 key={filter.key}
                 onClick={() => setActiveFilter(filter.key)}
-                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors ${
+                className={`flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] transition-colors ${
                   isActive
-                    ? "bg-teal text-white shadow-sm"
-                    : "border border-white/60 bg-white/60 text-slate-600 hover:bg-white/90"
+                    ? "bg-primary font-bold text-white shadow-sm"
+                    : "font-medium border border-white/60 bg-white/60 text-slate-600 hover:bg-white/90"
                 }`}
               >
                 {t(filter.label)}
@@ -99,14 +99,80 @@ export default function ProjectsTable() {
             <SlidersHorizontal size={14} />
             {t("Filter")}</button>
 
-          <button className="flex items-center gap-2 rounded-full bg-teal px-3.5 py-2 text-[12px] font-semibold text-white shadow-sm transition-colors hover:bg-[#3f8291]">
+          <button className="flex items-center gap-2 rounded-full bg-primary px-3.5 py-2 text-[12px] font-bold text-white shadow-sm transition-colors hover:bg-primary-dark">
             <Plus size={15} />
             {t("New Project")}</button>
         </div>
       </div>
 
-      {/* Table */}
-      <div className="mt-4 overflow-x-auto">
+      {/* Phones: stacked cards instead of the wide table */}
+      <ul className="mt-4 space-y-2 md:hidden">
+        {filtered.map((project) => (
+          <li
+            key={project.id}
+            className="rounded-xl border border-white/60 bg-white/50 p-3"
+          >
+            <div className="flex items-start justify-between gap-2">
+              <div className="min-w-0">
+                <p className="text-[13px] font-semibold text-ink">
+                  {t(project.name)}
+                </p>
+                <p className="mt-0.5 truncate text-[11px] text-slate-500">
+                  {t(project.code)} · {t(project.service)}
+                </p>
+              </div>
+              <ProjectStatusBadge status={project.status} />
+            </div>
+
+            <div className="mt-3 flex items-center gap-2">
+              <div className="flex-1">
+                <ProgressBar
+                  value={project.progress}
+                  color={project.progressColor}
+                />
+              </div>
+              <span className="text-[11px] font-semibold text-slate-500">
+                {project.progress}%
+              </span>
+            </div>
+
+            <div className="mt-2 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-[11px] text-slate-500">
+              <span>{t(project.currentPhase)}</span>
+              <span className="flex items-center gap-1">
+                <Calendar size={12} className="shrink-0 text-slate-400" />
+                {t(project.deadline)}
+              </span>
+            </div>
+
+            <div className="mt-3 flex items-center gap-2 border-t border-white/60 pt-3">
+              <ConsultantAvatar name={project.consultant.name} />
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-[11.5px] font-medium text-ink">
+                  {t(project.consultant.name)}
+                </p>
+                <p className="truncate text-[10px] text-slate-400">
+                  {t(project.consultant.role)}
+                </p>
+              </div>
+              <button
+                aria-label={t("Project actions")}
+                className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/70 hover:text-slate-600"
+              >
+                <MoreHorizontal size={16} />
+              </button>
+            </div>
+          </li>
+        ))}
+
+        {filtered.length === 0 && (
+          <li className="py-10 text-center text-[12px] text-slate-400">
+            {t("No projects match your filters.")}
+          </li>
+        )}
+      </ul>
+
+      {/* Table (tablet and up) */}
+      <div className="mt-4 hidden overflow-x-auto md:block">
         <table className="w-full min-w-[880px] border-collapse">
           <thead>
             <tr className="border-b border-white/60 text-left text-[11px] font-semibold uppercase tracking-wide text-slate-400">
@@ -129,7 +195,7 @@ export default function ProjectsTable() {
               >
                 {/* Project */}
                 <td className="px-3 py-3">
-                  <p className="text-[12.5px] font-semibold text-[#163b5b]">
+                  <p className="text-[12.5px] font-semibold text-ink">
                     {t(project.name)}
                   </p>
                   <p className="mt-0.5 text-[10px] text-slate-400">
@@ -188,7 +254,7 @@ export default function ProjectsTable() {
                   <div className="flex items-center gap-2">
                     <ConsultantAvatar name={project.consultant.name} />
                     <div className="min-w-0">
-                      <p className="truncate text-[11.5px] font-medium text-[#163b5b]">
+                      <p className="truncate text-[11.5px] font-medium text-ink">
                         {t(project.consultant.name)}
                       </p>
                       <p className="truncate text-[10px] text-slate-400">
@@ -224,7 +290,7 @@ export default function ProjectsTable() {
       </div>
 
       {/* Footer: count + pagination */}
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+      <div className="mt-4 flex flex-col-reverse items-center justify-between gap-3 sm:flex-row">
         <p className="text-[11px] text-slate-400">
           {t("Showing {shown} of {total} projects", {
             shown: filtered.length,
@@ -239,7 +305,7 @@ export default function ProjectsTable() {
           >
             <ChevronLeft size={15} />
           </button>
-          <button className="flex h-7 w-7 items-center justify-center rounded-lg bg-teal text-[12px] font-semibold text-white">
+          <button className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-[12px] font-bold text-white">
             1
           </button>
           <button

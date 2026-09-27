@@ -42,7 +42,7 @@ export const projects: Project[] = [
     progress: 80,
     currentPhase: "Internal Audit",
     deadline: "25 Sep 2026",
-    progressColor: "#4e97a7",
+    progressColor: "#087C9A",
   },
   {
     id: "iso-9001",
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     progress: 65,
     currentPhase: "Implementation",
     deadline: "12 Oct 2026",
-    progressColor: "#85d5f6",
+    progressColor: "#21B6D7",
   },
   {
     id: "carbon-footprint",
@@ -60,7 +60,7 @@ export const projects: Project[] = [
     progress: 50,
     currentPhase: "Data Collection",
     deadline: "10 Oct 2026",
-    progressColor: "#fa880d",
+    progressColor: "#D88620",
   },
   {
     id: "esg",
@@ -69,7 +69,7 @@ export const projects: Project[] = [
     progress: 30,
     currentPhase: "Gap Analysis",
     deadline: "30 Nov 2026",
-    progressColor: "#edb55e",
+    progressColor: "#F2A23A",
   },
 ];
 
@@ -186,7 +186,7 @@ export const projectList: import("@/types/dashboard").ProjectListItem[] = [
     service: "ISO 14001",
     serviceCategory: "Environmental Management",
     progress: 80,
-    progressColor: "#4e97a7",
+    progressColor: "#087C9A",
     currentPhase: "Internal Audit",
     deadline: "25 Sep 2026",
     deadlineNote: "2 days left",
@@ -200,7 +200,7 @@ export const projectList: import("@/types/dashboard").ProjectListItem[] = [
     service: "ISO 9001",
     serviceCategory: "Quality Management",
     progress: 65,
-    progressColor: "#85d5f6",
+    progressColor: "#21B6D7",
     currentPhase: "Implementation",
     deadline: "12 Oct 2026",
     deadlineNote: "20 days left",
@@ -214,7 +214,7 @@ export const projectList: import("@/types/dashboard").ProjectListItem[] = [
     service: "Carbon Footprint",
     serviceCategory: "Carbon Management",
     progress: 50,
-    progressColor: "#fa880d",
+    progressColor: "#D88620",
     currentPhase: "Data Collection",
     deadline: "10 Oct 2026",
     deadlineNote: "7 days left",
@@ -242,7 +242,7 @@ export const projectList: import("@/types/dashboard").ProjectListItem[] = [
     service: "ISO 45001",
     serviceCategory: "Occupational Health & Safety",
     progress: 20,
-    progressColor: "#85d5f6",
+    progressColor: "#21B6D7",
     currentPhase: "Planning",
     deadline: "15 Dec 2026",
     deadlineNote: "93 days left",
@@ -256,7 +256,7 @@ export const projectList: import("@/types/dashboard").ProjectListItem[] = [
     service: "Supplier Audit",
     serviceCategory: "Supply Chain",
     progress: 90,
-    progressColor: "#4e97a7",
+    progressColor: "#087C9A",
     currentPhase: "Final Review",
     deadline: "20 Sep 2026",
     deadlineNote: "7 days left",
@@ -270,7 +270,7 @@ export const projectList: import("@/types/dashboard").ProjectListItem[] = [
     service: "Training",
     serviceCategory: "Capacity Building",
     progress: 40,
-    progressColor: "#fa880d",
+    progressColor: "#D88620",
     currentPhase: "Content Development",
     deadline: "5 Nov 2026",
     deadlineNote: "53 days left",
@@ -703,9 +703,9 @@ export const certificateItems: import("@/types/dashboard").CertificateItem[] = [
 
 export const complianceSegments: import("@/types/dashboard").ComplianceSegment[] =
   [
-    { id: "valid", label: "Valid", value: 4, color: "#10b981" },
-    { id: "expiring", label: "Expiring Soon", value: 1, color: "#f59e0b" },
-    { id: "expired", label: "Expired", value: 1, color: "#ef4444" },
+    { id: "valid", label: "Valid", value: 4, color: "#16A34A" },
+    { id: "expiring", label: "Expiring Soon", value: 1, color: "#F59E0B" },
+    { id: "expired", label: "Expired", value: 1, color: "#DC2626" },
   ];
 
 // ---- Reports page data ----
@@ -1145,7 +1145,7 @@ export const serviceCards: import("@/types/dashboard").ServiceCard[] = [
     tags: ["ISO 9001", "ISO 14001", "ISO 45001", "+3"],
     category: "certification",
     iconKind: "shield",
-    gradient: "from-sky/60 via-teal/40 to-[#0f3552]/70",
+    gradient: "from-primary/60 via-primary-dark/40 to-primary-dark/70",
   },
   {
     id: "carbon",
@@ -1156,7 +1156,7 @@ export const serviceCards: import("@/types/dashboard").ServiceCard[] = [
     tags: ["GHG Protocol", "Carbon Management", "Net Zero"],
     category: "sustainability",
     iconKind: "leaf",
-    gradient: "from-emerald-400/60 via-teal/40 to-emerald-700/60",
+    gradient: "from-emerald-400/60 via-primary-dark/40 to-emerald-700/60",
   },
   {
     id: "esg",
@@ -1167,7 +1167,7 @@ export const serviceCards: import("@/types/dashboard").ServiceCard[] = [
     tags: ["ESG Strategy", "Materiality", "Reporting"],
     category: "consulting",
     iconKind: "users",
-    gradient: "from-lime-400/50 via-emerald-400/40 to-teal/60",
+    gradient: "from-lime-400/50 via-emerald-400/40 to-primary-dark/60",
   },
   {
     id: "training",
@@ -1178,7 +1178,7 @@ export const serviceCards: import("@/types/dashboard").ServiceCard[] = [
     tags: ["In-house", "Online", "Customized"],
     category: "training",
     iconKind: "cap",
-    gradient: "from-sky/60 via-slate-400/30 to-slate-600/50",
+    gradient: "from-primary/60 via-slate-400/30 to-slate-600/50",
   },
   {
     id: "supplier",
@@ -1189,7 +1189,7 @@ export const serviceCards: import("@/types/dashboard").ServiceCard[] = [
     tags: ["Supplier Evaluation", "Risk Assessment"],
     category: "audit",
     iconKind: "search",
-    gradient: "from-amber-300/50 via-orange/30 to-teal/50",
+    gradient: "from-amber-300/50 via-accent-dark/30 to-primary-dark/50",
   },
   {
     id: "ai",
@@ -1200,7 +1200,7 @@ export const serviceCards: import("@/types/dashboard").ServiceCard[] = [
     tags: ["AI Ethics", "Risk Management", "Compliance"],
     category: "consulting",
     iconKind: "chip",
-    gradient: "from-teal/60 via-[#0f3552]/50 to-slate-800/70",
+    gradient: "from-primary/60 via-primary-dark/50 to-primary-dark/80",
   },
 ];
 

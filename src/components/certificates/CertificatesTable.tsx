@@ -50,7 +50,7 @@ export default function CertificatesTable() {
     <section className="glass rounded-2xl p-4 sm:p-5">
       {/* Toolbar: filters + search + sort */}
       <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="-mx-4 flex items-center gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0 [&::-webkit-scrollbar]:hidden">
           {certificateFilters.map((filter) => {
             const isActive = filter.key === activeFilter;
 
@@ -58,10 +58,10 @@ export default function CertificatesTable() {
               <button
                 key={filter.key}
                 onClick={() => setActiveFilter(filter.key)}
-                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors ${
+                className={`flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] transition-colors ${
                   isActive
-                    ? "bg-teal text-white shadow-sm"
-                    : "border border-white/60 bg-white/60 text-slate-600 hover:bg-white/90"
+                    ? "bg-primary font-bold text-white shadow-sm"
+                    : "font-medium border border-white/60 bg-white/60 text-slate-600 hover:bg-white/90"
                 }`}
               >
                 {t(filter.label)}
@@ -101,8 +101,62 @@ export default function CertificatesTable() {
         </div>
       </div>
 
-      {/* Table */}
-      <div className="mt-4 overflow-x-auto">
+      {/* Phones: stacked cards instead of the wide table */}
+      <ul className="mt-4 space-y-2 md:hidden">
+        {filtered.map((cert) => (
+          <li
+            key={cert.id}
+            className="rounded-xl border border-white/60 bg-white/50 p-3"
+          >
+            <div className="flex items-start gap-2.5">
+              <CertIcon kind={cert.kind} />
+              <div className="min-w-0 flex-1">
+                <p className="text-[13px] font-semibold text-ink">
+                  {t(cert.name)}
+                </p>
+                <p className="truncate text-[11px] text-slate-500">
+                  {t(cert.standard)}
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-2.5">
+              <CertStatusBadge status={cert.status} note={cert.statusNote} />
+            </div>
+
+            <dl className="mt-2.5 grid grid-cols-2 gap-2 text-[11px]">
+              <div>
+                <dt className="text-slate-400">{t("Issue Date")}</dt>
+                <dd className="text-slate-600">{t(cert.issueDate)}</dd>
+              </div>
+              <div>
+                <dt className="text-slate-400">{t("Expiry Date")}</dt>
+                <dd className="text-slate-600">{t(cert.expiryDate)}</dd>
+              </div>
+            </dl>
+
+            <div className="mt-3 flex items-center gap-2 border-t border-white/60 pt-2">
+              <button className="inline-flex flex-1 items-center justify-center gap-1 rounded-lg px-2 py-1.5 text-[11.5px] font-medium text-primary-dark transition-colors hover:bg-white/70">
+                <Eye size={14} />
+                {t("View")}
+              </button>
+              <button className="inline-flex flex-1 items-center justify-center gap-1 rounded-lg px-2 py-1.5 text-[11.5px] font-medium text-slate-500 transition-colors hover:bg-white/70 hover:text-primary-dark">
+                <Download size={14} />
+                {t("Download")}
+              </button>
+            </div>
+          </li>
+        ))}
+
+        {filtered.length === 0 && (
+          <li className="py-10 text-center text-[12px] text-slate-400">
+            {t("No certificates match your filters.")}
+          </li>
+        )}
+      </ul>
+
+      {/* Table (tablet and up) */}
+      <div className="mt-4 hidden overflow-x-auto md:block">
         <table className="w-full min-w-[760px] border-collapse">
           <thead>
             <tr className="border-b border-white/60 text-left text-[11px] font-semibold uppercase tracking-wide text-slate-400">
@@ -126,7 +180,7 @@ export default function CertificatesTable() {
                   <div className="flex items-center gap-2.5">
                     <CertIcon kind={cert.kind} />
                     <div className="min-w-0">
-                      <p className="truncate text-[12.5px] font-semibold text-[#163b5b]">
+                      <p className="truncate text-[12.5px] font-semibold text-ink">
                         {t(cert.name)}
                       </p>
                       <p className="truncate text-[10px] text-slate-400">
@@ -159,10 +213,10 @@ export default function CertificatesTable() {
                 {/* Actions */}
                 <td className="px-3 py-3">
                   <div className="flex items-center justify-end gap-1">
-                    <button className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[11px] font-medium text-teal transition-colors hover:bg-white/70">
+                    <button className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[11px] font-medium text-primary-dark transition-colors hover:bg-white/70">
                       <Eye size={14} />
                       {t("View")}</button>
-                    <button className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[11px] font-medium text-slate-500 transition-colors hover:bg-white/70 hover:text-teal">
+                    <button className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[11px] font-medium text-slate-500 transition-colors hover:bg-white/70 hover:text-primary-dark">
                       <Download size={14} />
                       {t("Download")}</button>
                     <button

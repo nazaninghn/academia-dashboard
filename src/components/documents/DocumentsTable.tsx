@@ -55,7 +55,7 @@ export default function DocumentsTable() {
     <section className="glass rounded-2xl p-4 sm:p-5">
       {/* Toolbar: filters + search + sort */}
       <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="-mx-4 flex items-center gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0 [&::-webkit-scrollbar]:hidden">
           {docFilters.map((filter) => {
             const isActive = filter.key === activeFilter;
 
@@ -63,10 +63,10 @@ export default function DocumentsTable() {
               <button
                 key={filter.key}
                 onClick={() => setActiveFilter(filter.key)}
-                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors ${
+                className={`flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] transition-colors ${
                   isActive
-                    ? "bg-teal text-white shadow-sm"
-                    : "border border-white/60 bg-white/60 text-slate-600 hover:bg-white/90"
+                    ? "bg-primary font-bold text-white shadow-sm"
+                    : "font-medium border border-white/60 bg-white/60 text-slate-600 hover:bg-white/90"
                 }`}
               >
                 {t(filter.label)}
@@ -106,8 +106,73 @@ export default function DocumentsTable() {
         </div>
       </div>
 
-      {/* Table */}
-      <div className="mt-4 overflow-x-auto">
+      {/* Phones: stacked cards instead of the wide table */}
+      <ul className="mt-4 space-y-2 md:hidden">
+        {filtered.map((doc) => {
+          const isUploaded = doc.uploadedDate != null;
+
+          return (
+            <li
+              key={doc.id}
+              className="rounded-xl border border-white/60 bg-white/50 p-3"
+            >
+              <div className="flex items-start gap-2.5">
+                <DocFileIcon kind={doc.fileKind} />
+                <div className="min-w-0 flex-1">
+                  <p className="text-[13px] font-semibold text-ink">
+                    {t(doc.name)}
+                  </p>
+                  <p className="truncate text-[11px] text-slate-500">
+                    {t(doc.project)} · {t(doc.type)}
+                  </p>
+                </div>
+                <DocStatusBadge status={doc.status} />
+              </div>
+
+              <div className="mt-3 flex items-center justify-between gap-2 border-t border-white/60 pt-2">
+                <p className="min-w-0 truncate text-[11px] text-slate-500">
+                  {isUploaded ? (
+                    <>
+                      {t(doc.uploadedDate ?? "")} ·{" "}
+                      {t("by {name}", { name: doc.uploadedBy ?? "" })}
+                    </>
+                  ) : (
+                    <span className="italic text-slate-400">
+                      {t("Not uploaded")}
+                    </span>
+                  )}
+                </p>
+
+                <div className="flex shrink-0 items-center gap-1">
+                  {isUploaded ? (
+                    <>
+                      <button aria-label={t("View document")} className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/70 hover:text-primary-dark">
+                        <Eye size={15} />
+                      </button>
+                      <button aria-label={t("Download document")} className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/70 hover:text-primary-dark">
+                        <Download size={15} />
+                      </button>
+                    </>
+                  ) : (
+                    <button aria-label={t("Upload document")} className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/70 hover:text-primary-dark">
+                      <Upload size={15} />
+                    </button>
+                  )}
+                </div>
+              </div>
+            </li>
+          );
+        })}
+
+        {filtered.length === 0 && (
+          <li className="py-10 text-center text-[12px] text-slate-400">
+            {t("No documents match your filters.")}
+          </li>
+        )}
+      </ul>
+
+      {/* Table (tablet and up) */}
+      <div className="mt-4 hidden overflow-x-auto md:block">
         <table className="w-full min-w-[820px] border-collapse">
           <thead>
             <tr className="border-b border-white/60 text-left text-[11px] font-semibold uppercase tracking-wide text-slate-400">
@@ -115,7 +180,7 @@ export default function DocumentsTable() {
                 <input
                   type="checkbox"
                   aria-label={t("Select all documents")}
-                  className="h-3.5 w-3.5 rounded border-slate-300 accent-teal"
+                  className="h-3.5 w-3.5 rounded border-slate-300 accent-primary-dark"
                 />
               </th>
               <th className="px-3 py-3 font-semibold">{t("Name")}</th>
@@ -141,7 +206,7 @@ export default function DocumentsTable() {
                     <input
                       type="checkbox"
                       aria-label={t("Select {name}", { name: t(doc.name) })}
-                      className="h-3.5 w-3.5 rounded border-slate-300 accent-teal"
+                      className="h-3.5 w-3.5 rounded border-slate-300 accent-primary-dark"
                     />
                   </td>
 
@@ -150,7 +215,7 @@ export default function DocumentsTable() {
                     <div className="flex items-center gap-2.5">
                       <DocFileIcon kind={doc.fileKind} />
                       <div className="min-w-0">
-                        <p className="truncate text-[12.5px] font-semibold text-[#163b5b]">
+                        <p className="truncate text-[12.5px] font-semibold text-ink">
                           {t(doc.name)}
                         </p>
                         <p className="truncate text-[10px] text-slate-400">
@@ -204,13 +269,13 @@ export default function DocumentsTable() {
                         <>
                           <button
                             aria-label={t("View document")}
-                            className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/70 hover:text-teal"
+                            className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/70 hover:text-primary-dark"
                           >
                             <Eye size={15} />
                           </button>
                           <button
                             aria-label={t("Download document")}
-                            className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/70 hover:text-teal"
+                            className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/70 hover:text-primary-dark"
                           >
                             <Download size={15} />
                           </button>
@@ -218,7 +283,7 @@ export default function DocumentsTable() {
                       ) : (
                         <button
                           aria-label={t("Upload document")}
-                          className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/70 hover:text-teal"
+                          className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/70 hover:text-primary-dark"
                         >
                           <Upload size={15} />
                         </button>
@@ -249,7 +314,7 @@ export default function DocumentsTable() {
       </div>
 
       {/* Footer: count + pagination */}
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+      <div className="mt-4 flex flex-col-reverse items-center justify-between gap-3 sm:flex-row">
         <p className="text-[11px] text-slate-400">
           {t("Showing 1-{shown} of {total} documents", {
             shown: filtered.length,
@@ -264,7 +329,7 @@ export default function DocumentsTable() {
           >
             <ChevronLeft size={15} />
           </button>
-          <button className="flex h-7 w-7 items-center justify-center rounded-lg bg-teal text-[12px] font-semibold text-white">
+          <button className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-[12px] font-bold text-white">
             1
           </button>
           <button className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/60 bg-white/60 text-[12px] font-medium text-slate-500 transition-colors hover:bg-white/90">

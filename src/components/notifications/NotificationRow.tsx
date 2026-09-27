@@ -16,13 +16,13 @@ export default function NotificationRow({
   return (
     <div
       className={`group flex items-start gap-3 rounded-xl px-2 py-3 sm:px-3 transition-colors ${
-        notification.unread ? "bg-sky-light/40" : "hover:bg-white/50"
+        notification.unread ? "bg-primary/40" : "hover:bg-white/50"
       }`}
     >
       <NotificationIcon kind={notification.iconKind} />
 
       <div className="min-w-0 flex-1">
-        <p className="text-[12.5px] font-semibold text-[#163b5b]">
+        <p className="text-[12.5px] font-semibold text-ink">
           {t(notification.title)}
         </p>
         <p className="mt-0.5 text-[11.5px] leading-4 text-slate-500">
@@ -38,7 +38,7 @@ export default function NotificationRow({
           {t(notification.time)}
         </span>
         {notification.unread && (
-          <span className="h-2 w-2 rounded-full bg-orange" />
+          <span className="h-2 w-2 rounded-full bg-accent-dark" />
         )}
         <button
           aria-label={t("Notification actions")}

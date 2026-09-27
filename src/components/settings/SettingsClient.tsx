@@ -13,7 +13,7 @@ function PlaceholderTab({ label }: { label: string }) {
 
   return (
     <section className="glass rounded-2xl p-10 text-center">
-      <p className="text-[14px] font-semibold text-[#163b5b]">{t(label)}</p>
+      <p className="text-[14px] font-semibold text-ink">{t(label)}</p>
       <p className="mt-1 text-[11.5px] text-slate-400">
         {t("This section is coming soon.")}</p>
     </section>

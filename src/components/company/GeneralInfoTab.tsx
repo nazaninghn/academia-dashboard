@@ -9,8 +9,8 @@ import { useI18n } from "@/i18n/I18nProvider";
 const focusToneStyle: Record<FocusArea["tone"], string> = {
   amber: "bg-amber-100/70 text-amber-600",
   green: "bg-emerald-100/70 text-emerald-600",
-  teal: "bg-teal/15 text-teal",
-  sky: "bg-sky/25 text-teal",
+  teal: "bg-primary-dark/15 text-primary-dark",
+  sky: "bg-primary/25 text-primary-dark",
 };
 
 const socialConfig: Record<
@@ -27,8 +27,8 @@ function SectionHeader({ title }: { title: string }) {
 
   return (
     <div className="flex items-center justify-between">
-      <h3 className="text-[13px] font-semibold text-[#163b5b]">{t(title)}</h3>
-      <button className="flex items-center gap-1 text-[11px] font-medium text-teal transition-colors hover:text-[#3f8291]">
+      <h3 className="text-[13px] font-semibold text-ink">{t(title)}</h3>
+      <button className="flex items-center gap-1 text-[11px] font-medium text-primary-dark transition-colors hover:text-primary-dark">
         <Pencil size={12} />
         {t("Edit")}</button>
     </div>
@@ -59,7 +59,7 @@ export default function GeneralInfoTab() {
                   {row.isLink ? (
                     <a
                       href={row.value}
-                      className="inline-flex items-center gap-1 break-all text-teal transition-colors hover:text-[#3f8291]"
+                      className="inline-flex items-center gap-1 break-all text-primary-dark transition-colors hover:text-primary-dark"
                     >
                       {t(row.value)}
                       <ExternalLink size={11} className="shrink-0" />
@@ -78,7 +78,7 @@ export default function GeneralInfoTab() {
           <SectionHeader title="Industry & Compliance Focus" />
 
           <p className="mt-3 text-[11px] text-slate-400">{t("Primary Industry")}</p>
-          <span className="mt-1 inline-flex rounded-md bg-sky/20 px-2.5 py-1 text-[11px] font-medium text-teal">
+          <span className="mt-1 inline-flex rounded-md bg-primary/20 px-2.5 py-1 text-[11px] font-medium text-primary-dark">
             {t(primaryIndustry)}
           </span>
 
@@ -106,16 +106,16 @@ export default function GeneralInfoTab() {
           <div className="mt-3 grid grid-cols-2 gap-3">
             <div className="flex h-[92px] items-center justify-center rounded-xl border border-white/60 bg-white/80 shadow-sm">
               <div className="text-center leading-none">
-                <p className="text-[18px] font-bold tracking-tight text-[#163b5b]">
+                <p className="text-[18px] font-bold tracking-tight text-ink">
                   {t("ABC")}</p>
                 <p className="mt-0.5 text-[7px] font-semibold uppercase tracking-[0.15em] text-slate-400">
                   {t("Manufacturing")}</p>
               </div>
             </div>
 
-            <button className="flex h-[92px] flex-col items-center justify-center rounded-xl border-2 border-dashed border-sky/50 bg-sky-light/30 text-center transition-colors hover:border-teal/60 hover:bg-sky-light/50">
-              <UploadCloud size={20} className="text-teal" />
-              <p className="mt-1 text-[11px] font-medium text-teal">
+            <button className="flex h-[92px] flex-col items-center justify-center rounded-xl border-2 border-dashed border-primary/50 bg-primary/30 text-center transition-colors hover:border-primary-dark/60 hover:bg-primary/50">
+              <UploadCloud size={20} className="text-primary-dark" />
+              <p className="mt-1 text-[11px] font-medium text-primary-dark">
                 {t("Upload New Logo")}</p>
               <p className="text-[9px] text-slate-400">
                 {t("PNG, JPG or SVG (max 2 MB)")}</p>
@@ -140,7 +140,7 @@ export default function GeneralInfoTab() {
                   </span>
                   <a
                     href={social.url}
-                    className="truncate text-[11px] text-slate-600 transition-colors hover:text-teal"
+                    className="truncate text-[11px] text-slate-600 transition-colors hover:text-primary-dark"
                   >
                     {t(social.url)}
                   </a>

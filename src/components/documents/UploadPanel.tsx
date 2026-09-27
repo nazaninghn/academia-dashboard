@@ -14,18 +14,18 @@ export default function UploadPanel() {
     <div className="flex flex-col gap-4">
       {/* Upload card */}
       <section className="glass rounded-2xl p-4 sm:p-5">
-        <h3 className="text-[13px] font-semibold text-[#163b5b]">
+        <h3 className="text-[13px] font-semibold text-ink">
           {t("Upload Document")}</h3>
 
-        <div className="mt-3 flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-sky/50 bg-sky-light/30 px-4 py-7 text-center transition-colors hover:border-teal/60 hover:bg-sky-light/50">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/70 text-teal ring-1 ring-inset ring-white/60">
+        <div className="mt-3 flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-primary/50 bg-primary/30 px-4 py-7 text-center transition-colors hover:border-primary-dark/60 hover:bg-primary/50">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/70 text-primary-dark ring-1 ring-inset ring-white/60">
             <UploadCloud size={24} />
           </div>
           <p className="mt-3 text-[12px] font-medium text-slate-600">
             {t("Drag & drop your files here")}</p>
           <p className="text-[11px] text-slate-400">{t("or click to browse")}</p>
 
-          <button className="mt-3 rounded-full bg-teal px-5 py-2 text-[12px] font-semibold text-white shadow-sm transition-colors hover:bg-[#3f8291]">
+          <button className="mt-3 rounded-full bg-primary px-5 py-2 text-[12px] font-bold text-white shadow-sm transition-colors hover:bg-primary-dark">
             {t("Browse Files")}</button>
         </div>
 
@@ -38,11 +38,11 @@ export default function UploadPanel() {
       <section className="glass rounded-2xl p-4 sm:p-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal/15 text-teal ring-1 ring-inset ring-white/50">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-dark/15 text-primary-dark ring-1 ring-inset ring-white/50">
               <HardDrive size={18} />
             </div>
             <div>
-              <p className="text-[12px] font-semibold text-[#163b5b]">
+              <p className="text-[12px] font-semibold text-ink">
                 {t("Storage Usage")}</p>
               <p className="text-[10px] text-slate-400">
                 {t("{used} GB of {total} GB used", { used: usedGb, total: totalGb })}
@@ -50,14 +50,14 @@ export default function UploadPanel() {
             </div>
           </div>
 
-          <span className="text-[13px] font-bold text-teal">
+          <span className="text-[13px] font-bold text-primary-dark">
             {usedPercent}%
           </span>
         </div>
 
         <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-slate-200/70">
           <div
-            className="h-full rounded-full bg-gradient-to-r from-teal to-sky"
+            className="h-full rounded-full bg-gradient-to-r from-primary-dark to-primary"
             style={{ width: `${usedPercent}%` }}
           />
         </div>

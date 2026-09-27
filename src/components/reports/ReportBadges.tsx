@@ -4,7 +4,7 @@ import type { ReportStatus, ReportType } from "@/types/dashboard";
 import { useI18n } from "@/i18n/I18nProvider";
 
 const typeStyle: Record<ReportType, string> = {
-  "Audit Report": "bg-sky/20 text-teal",
+  "Audit Report": "bg-primary/20 text-primary-dark",
   Compliance: "bg-violet-100/80 text-violet-600",
   Sustainability: "bg-emerald-100/80 text-emerald-600",
   "Project Report": "bg-amber-100/80 text-amber-600",
@@ -25,7 +25,7 @@ export function ReportTypeBadge({ type }: { type: ReportType }) {
 
 const statusStyle: Record<ReportStatus, string> = {
   Completed: "bg-emerald-100/80 text-emerald-700 ring-emerald-200/70",
-  "In Progress": "bg-sky/20 text-teal ring-sky/30",
+  "In Progress": "bg-primary/20 text-primary-dark ring-primary/30",
   Pending: "bg-amber-100/80 text-amber-700 ring-amber-200/70",
 };
 

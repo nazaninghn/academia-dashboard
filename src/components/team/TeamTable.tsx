@@ -77,8 +77,52 @@ export default function TeamTable() {
         </div>
       </div>
 
-      {/* Table */}
-      <div className="mt-4 overflow-x-auto">
+      {/* Phones: stacked cards instead of the wide table */}
+      <ul className="mt-4 space-y-2 md:hidden">
+        {visible.map((member) => (
+          <li
+            key={member.id}
+            className="rounded-xl border border-white/60 bg-white/50 p-3"
+          >
+            <div className="flex items-start gap-2.5">
+              <ConsultantAvatar name={member.name} />
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-[13px] font-semibold text-ink">
+                  {t(member.name)}
+                </p>
+                <p className="truncate text-[11px] text-slate-500">
+                  {t(member.title)} · {t(member.department)}
+                </p>
+              </div>
+              <button
+                aria-label={t("Actions for {name}", { name: member.name })}
+                className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/70 hover:text-slate-600"
+              >
+                <MoreHorizontal size={16} />
+              </button>
+            </div>
+
+            <div className="mt-2.5 flex flex-wrap items-center gap-2">
+              <TeamRoleBadge role={member.role} />
+              <TeamStatusBadge status={member.status} />
+            </div>
+
+            <div className="mt-2.5 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-t border-white/60 pt-2 text-[11px] text-slate-500">
+              <span className="min-w-0 truncate">{t(member.email)}</span>
+              <span className="text-slate-400">{t(member.lastActive)}</span>
+            </div>
+          </li>
+        ))}
+
+        {visible.length === 0 && (
+          <li className="py-10 text-center text-[12px] text-slate-400">
+            {t("No team members match your search.")}
+          </li>
+        )}
+      </ul>
+
+      {/* Table (tablet and up) */}
+      <div className="mt-4 hidden overflow-x-auto md:block">
         <table className="w-full min-w-[860px] border-collapse">
           <thead>
             <tr className="border-b border-white/60 text-left text-[11px] font-semibold uppercase tracking-wide text-slate-400">
@@ -86,7 +130,7 @@ export default function TeamTable() {
                 <input
                   type="checkbox"
                   aria-label={t("Select all members")}
-                  className="h-3.5 w-3.5 rounded border-slate-300 accent-teal"
+                  className="h-3.5 w-3.5 rounded border-slate-300 accent-primary-dark"
                 />
               </th>
               <th className="px-3 py-3 font-semibold">{t("Name")}</th>
@@ -109,7 +153,7 @@ export default function TeamTable() {
                   <input
                     type="checkbox"
                     aria-label={t("Select {name}", { name: member.name })}
-                    className="h-3.5 w-3.5 rounded border-slate-300 accent-teal"
+                    className="h-3.5 w-3.5 rounded border-slate-300 accent-primary-dark"
                   />
                 </td>
 
@@ -118,7 +162,7 @@ export default function TeamTable() {
                   <div className="flex items-center gap-2.5">
                     <ConsultantAvatar name={member.name} />
                     <div className="min-w-0">
-                      <p className="truncate text-[12.5px] font-semibold text-[#163b5b]">
+                      <p className="truncate text-[12.5px] font-semibold text-ink">
                         {t(member.name)}
                       </p>
                       <p className="truncate text-[10px] text-slate-400">
@@ -179,7 +223,7 @@ export default function TeamTable() {
       </div>
 
       {/* Footer */}
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+      <div className="mt-4 flex flex-col-reverse items-center justify-between gap-3 sm:flex-row">
         <p className="text-[11px] text-slate-400">
           {t("Showing 1-{shown} of {total} members", {
             shown: visible.length,
@@ -194,7 +238,7 @@ export default function TeamTable() {
           >
             <ChevronLeft size={15} />
           </button>
-          <button className="flex h-7 w-7 items-center justify-center rounded-lg bg-teal text-[12px] font-semibold text-white">
+          <button className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-[12px] font-bold text-white">
             1
           </button>
           <button className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/60 bg-white/60 text-[12px] font-medium text-slate-500 transition-colors hover:bg-white/90">

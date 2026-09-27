@@ -1,12 +1,47 @@
 @import "tailwindcss";
 
+/* Brand palette: the single source of truth for colors. */
+:root {
+  --primary: #21B6D7;
+  --primary-dark: #087C9A;
+
+  --accent: #F2A23A;
+  --accent-dark: #D88620;
+
+  --sidebar: #111827;
+
+  --background: #F6F8FA;
+  --surface: #FFFFFF;
+
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-muted: #94A3B8;
+
+  --border: #E5E7EB;
+
+  --success: #16A34A;
+  --warning: #F59E0B;
+  --danger: #DC2626;
+  --info: #21B6D7;
+}
+
+/* Expose the palette to Tailwind (bg-primary, text-ink, border-border, ...) */
 @theme inline {
-  --color-gold: #edb55e;
-  --color-sky: #85d5f6;
-  --color-sky-light: #abe2f4;
-  --color-mist: #ebefee;
-  --color-orange: #fa880d;
-  --color-teal: #4e97a7;
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
+  --color-sidebar: var(--sidebar);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-ink: var(--text-primary);
+  --color-ink-secondary: var(--text-secondary);
+  --color-ink-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
 }
 
 * {
@@ -22,22 +57,17 @@ body {
 body {
   background: radial-gradient(
       1200px 600px at 12% -10%,
-      rgba(133, 213, 246, 0.35) 0%,
+      rgba(33, 182, 215, 0.12) 0%,
       transparent 55%
     ),
     radial-gradient(
       1000px 700px at 100% 0%,
-      rgba(237, 181, 94, 0.22) 0%,
+      rgba(242, 162, 58, 0.08) 0%,
       transparent 50%
     ),
-    radial-gradient(
-      900px 900px at 80% 110%,
-      rgba(78, 151, 167, 0.28) 0%,
-      transparent 55%
-    ),
-    linear-gradient(160deg, #eaf7fd 0%, var(--color-mist) 45%, var(--color-sky-light) 100%);
+    var(--background);
   background-attachment: fixed;
-  color: #173b59;
+  color: var(--text-primary);
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -53,7 +83,7 @@ body {
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 10px 30px -12px rgba(23, 59, 89, 0.25),
+  box-shadow: 0 10px 30px -12px rgba(17, 24, 39, 0.25),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
 }
 
@@ -63,7 +93,7 @@ body {
   backdrop-filter: blur(10px) saturate(130%);
   -webkit-backdrop-filter: blur(10px) saturate(130%);
   border: 1px solid rgba(255, 255, 255, 0.55);
-  box-shadow: 0 4px 14px -8px rgba(23, 59, 89, 0.2);
+  box-shadow: 0 4px 14px -8px rgba(17, 24, 39, 0.2);
 }
 
 /* Smooth interactive motion */
@@ -77,8 +107,8 @@ body {
 @media (hover: hover) {
   .hover-lift:hover {
     transform: translateY(-4px);
-    box-shadow: 0 22px 44px -16px rgba(23, 59, 89, 0.38),
-      0 10px 24px -14px rgba(78, 151, 167, 0.45),
+    box-shadow: 0 22px 44px -16px rgba(17, 24, 39, 0.38),
+      0 10px 24px -14px rgba(8, 124, 154, 0.45),
       inset 0 1px 0 0 rgba(255, 255, 255, 0.75);
   }
 
@@ -90,7 +120,7 @@ body {
 .hover-row:hover {
   transform: translateY(-2px);
   background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 12px 26px -12px rgba(23, 59, 89, 0.32);
+  box-shadow: 0 12px 26px -12px rgba(17, 24, 39, 0.32);
   border-color: rgba(255, 255, 255, 0.85);
 }
 
@@ -178,7 +208,7 @@ body {
 .logo-hover:hover .logo-mark,
 .logo-hover:focus-visible .logo-mark {
   transform: translateY(-2px) scale(1.06);
-  filter: drop-shadow(0 8px 14px rgba(23, 59, 89, 0.18));
+  filter: drop-shadow(0 8px 14px rgba(17, 24, 39, 0.18));
 }
 
 .logo-hover:hover .logo-glow,
@@ -357,14 +387,14 @@ body {
   );
 }
 
-/* 1px teal edge that brightens near the cursor */
+/* 1px primary edge that brightens near the cursor */
 .glass::after,
 .hover-lift::after {
   padding: 1px;
   background: radial-gradient(
     220px circle at var(--mx) var(--my),
-    rgba(78, 151, 167, 0.75),
-    rgba(133, 213, 246, 0.35) 45%,
+    rgba(8, 124, 154, 0.75),
+    rgba(33, 182, 215, 0.35) 45%,
     transparent 75%
   );
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -389,7 +419,7 @@ body {
 
   .hover-lift:hover .card-icon {
     transform: translateY(-2px) rotate(-8deg) scale(1.1);
-    box-shadow: 0 8px 18px -8px rgba(23, 59, 89, 0.35);
+    box-shadow: 0 8px 18px -8px rgba(17, 24, 39, 0.35);
   }
 }
 
@@ -411,7 +441,7 @@ body {
 /*
  * One layer of motion for every button, keyed off the Tailwind classes each
  * button style already uses. `~=` matches a whole class name, so
- * [class~="bg-teal"] does not match "bg-teal/10" or "hover:bg-teal".
+ * [class~="bg-primary"] does not match "bg-primary/10" or "hover:bg-primary".
  * Toggle switches and pressed toggles (language switcher) are left alone.
  */
 button:not([role="switch"]):not([aria-pressed]):not(:disabled) {
@@ -424,14 +454,14 @@ button:not([role="switch"]):not([aria-pressed]) svg {
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Primary: solid teal or navy gradient */
-button:is([class~="bg-teal"], [class~="from-[#0f3552]"]):not([aria-pressed]) {
+/* Primary: solid primary or primary gradient */
+button:is([class~="bg-primary"], [class~="from-primary"]):not([aria-pressed]) {
   position: relative;
   overflow: hidden;
   isolation: isolate;
 }
 
-button:is([class~="bg-teal"], [class~="from-[#0f3552]"]):not([aria-pressed])::after {
+button:is([class~="bg-primary"], [class~="from-primary"]):not([aria-pressed])::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -447,13 +477,13 @@ button:is([class~="bg-teal"], [class~="from-[#0f3552]"]):not([aria-pressed])::af
 }
 
 @media (hover: hover) {
-  button:is([class~="bg-teal"], [class~="from-[#0f3552]"]):not([aria-pressed]):not(:disabled):hover {
+  button:is([class~="bg-primary"], [class~="from-primary"]):not([aria-pressed]):not(:disabled):hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 24px -10px rgba(78, 151, 167, 0.7),
-      0 4px 10px -6px rgba(23, 59, 89, 0.4);
+    box-shadow: 0 12px 24px -10px rgba(8, 124, 154, 0.7),
+      0 4px 10px -6px rgba(17, 24, 39, 0.4);
   }
 
-  button:is([class~="bg-teal"], [class~="from-[#0f3552]"]):not([aria-pressed]):hover::after {
+  button:is([class~="bg-primary"], [class~="from-primary"]):not([aria-pressed]):hover::after {
     background-position: -50% 0;
     transition: background-position 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   }
@@ -461,9 +491,9 @@ button:is([class~="bg-teal"], [class~="from-[#0f3552]"]):not([aria-pressed])::af
   /* Soft pills: white glass buttons, filter chips, pagination */
   button:is([class~="bg-white/70"], [class~="bg-white/60"]):not(:disabled):hover {
     transform: translateY(-1px);
-    border-color: rgba(78, 151, 167, 0.45);
-    color: var(--color-teal);
-    box-shadow: 0 8px 18px -10px rgba(23, 59, 89, 0.35);
+    border-color: rgba(8, 124, 154, 0.45);
+    color: var(--color-primary-dark);
+    box-shadow: 0 8px 18px -10px rgba(17, 24, 39, 0.35);
   }
 
   /* Icon-only buttons: pop and tilt the glyph */
@@ -493,7 +523,7 @@ button:is([class~="bg-teal"], [class~="from-[#0f3552]"]):not([aria-pressed])::af
 }
 
 /* Text links: underline draws in from the left */
-button[class~="text-teal"]:not([class*="rounded"]) {
+button[class~="text-primary-dark"]:not([class*="rounded"]) {
   background-image: linear-gradient(currentColor, currentColor);
   background-position: 0 100%;
   background-repeat: no-repeat;
@@ -501,7 +531,7 @@ button[class~="text-teal"]:not([class*="rounded"]) {
 }
 
 @media (hover: hover) {
-  button[class~="text-teal"]:not([class*="rounded"]):hover {
+  button[class~="text-primary-dark"]:not([class*="rounded"]):hover {
     background-size: 100% 1px;
   }
 }
@@ -533,7 +563,7 @@ button[class~="w-full"]:not([role="switch"]):not(:disabled):active {
 /*
  * Two shapes of field exist: bare fields (settings form: input / select /
  * textarea with their own border) and search pills (a rounded wrapper div
- * holding an icon + borderless input). Both get the same teal language.
+ * holding an icon + borderless input). Both get the same primary language.
  */
 
 /* Bare fields */
@@ -556,15 +586,15 @@ textarea:focus::placeholder {
 
 /* Only fields that draw their own border; pill inputs are borderless */
 :is(input, select, textarea)[class~="border"]:hover {
-  border-color: rgba(78, 151, 167, 0.4);
+  border-color: rgba(8, 124, 154, 0.4);
   background-color: rgba(255, 255, 255, 0.88);
 }
 
 :is(input, select, textarea)[class~="border"]:focus {
-  border-color: rgba(78, 151, 167, 0.7);
+  border-color: rgba(8, 124, 154, 0.7);
   background-color: #fff;
-  box-shadow: 0 0 0 3px rgba(78, 151, 167, 0.18),
-    0 6px 16px -10px rgba(23, 59, 89, 0.35);
+  box-shadow: 0 0 0 3px rgba(8, 124, 154, 0.18),
+    0 6px 16px -10px rgba(17, 24, 39, 0.35);
 }
 
 /* Select chevron / field icons sitting next to the control */
@@ -575,7 +605,7 @@ textarea:focus::placeholder {
 
 .relative:has(> :is(select, input, textarea):hover) > svg,
 .relative:has(> :is(select, input, textarea):focus) > svg {
-  color: var(--color-teal);
+  color: var(--color-primary-dark);
 }
 
 /* Tailwind's -translate-y-1/2 uses the separate `translate` property,
@@ -586,7 +616,7 @@ textarea:focus::placeholder {
 
 /* Textarea character counter picks up the accent while typing */
 .relative:has(> textarea:focus) > span {
-  color: var(--color-teal);
+  color: var(--color-primary-dark);
   transition: color 0.25s ease;
 }
 
@@ -602,24 +632,24 @@ div[class~="rounded-full"]:has(> input:not([type="checkbox"])) > svg {
 }
 
 div[class~="rounded-full"]:has(> input:not([type="checkbox"])):hover {
-  border-color: rgba(78, 151, 167, 0.4);
+  border-color: rgba(8, 124, 154, 0.4);
   background-color: rgba(255, 255, 255, 0.88);
 }
 
 div[class~="rounded-full"]:has(> input:not([type="checkbox"])):focus-within {
-  border-color: rgba(78, 151, 167, 0.7);
+  border-color: rgba(8, 124, 154, 0.7);
   background-color: #fff;
-  box-shadow: 0 0 0 3px rgba(78, 151, 167, 0.18),
-    0 8px 20px -12px rgba(23, 59, 89, 0.4);
+  box-shadow: 0 0 0 3px rgba(8, 124, 154, 0.18),
+    0 8px 20px -12px rgba(17, 24, 39, 0.4);
 }
 
 div[class~="rounded-full"]:has(> input:not([type="checkbox"])):focus-within > svg:first-child {
-  color: var(--color-teal);
+  color: var(--color-primary-dark);
 }
 
 @media (hover: hover) {
   div[class~="rounded-full"]:has(> input:not([type="checkbox"])):hover > svg:first-child {
-    color: var(--color-teal);
+    color: var(--color-primary-dark);
     transform: scale(1.12) rotate(-10deg);
   }
 }
@@ -634,7 +664,7 @@ input[type="checkbox"] {
 @media (hover: hover) {
   input[type="checkbox"]:hover {
     transform: scale(1.15);
-    box-shadow: 0 0 0 3px rgba(78, 151, 167, 0.18);
+    box-shadow: 0 0 0 3px rgba(8, 124, 154, 0.18);
   }
 }
 
@@ -644,7 +674,7 @@ input[type="checkbox"]:checked {
 
 input[type="checkbox"]:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(78, 151, 167, 0.35);
+  box-shadow: 0 0 0 3px rgba(8, 124, 154, 0.35);
 }
 
 @keyframes check-pop {
@@ -689,8 +719,8 @@ input[type="checkbox"]:focus-visible {
 tbody tr:not(:has(> td[colspan])) {
   background-image: linear-gradient(
     90deg,
-    rgba(133, 213, 246, 0.28),
-    rgba(171, 226, 244, 0.16) 45%,
+    rgba(33, 182, 215, 0.28),
+    rgba(33, 182, 215, 0.16) 45%,
     rgba(255, 255, 255, 0.35)
   );
   background-repeat: no-repeat;
@@ -701,13 +731,13 @@ tbody tr:not(:has(> td[colspan])) {
 
 /* Accent bar on the leading edge */
 tbody tr:not(:has(> td[colspan])) > td:first-child {
-  box-shadow: inset 0 0 0 0 var(--color-teal);
+  box-shadow: inset 0 0 0 0 var(--color-primary-dark);
   transition: box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Things inside the row that react to hover */
 tbody tr:not(:has(> td[colspan])) > td:first-child > *,
-tbody tr:not(:has(> td[colspan])) [class~="text-[#163b5b]"][class~="font-semibold"],
+tbody tr:not(:has(> td[colspan])) [class~="text-ink"][class~="font-semibold"],
 tbody tr:not(:has(> td[colspan])) [class~="shrink-0"]:is([class~="ring-white/50"], [class~="bg-gradient-to-br"]),
 tbody tr:not(:has(> td[colspan])) > td:last-child button {
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -717,7 +747,7 @@ tbody tr:not(:has(> td[colspan])) > td:last-child button {
 
 /* Selected row (Tasks board) keeps its accent bar */
 tbody tr[class~="bg-white/60"] > td:first-child {
-  box-shadow: inset 3px 0 0 0 var(--color-teal);
+  box-shadow: inset 3px 0 0 0 var(--color-primary-dark);
 }
 
 @media (hover: hover) {
@@ -726,7 +756,7 @@ tbody tr[class~="bg-white/60"] > td:first-child {
   }
 
   tbody tr:not(:has(> td[colspan])):hover > td:first-child {
-    box-shadow: inset 3px 0 0 0 var(--color-teal);
+    box-shadow: inset 3px 0 0 0 var(--color-primary-dark);
   }
 
   /* Leading cell content slides in slightly (skipped for checkbox cells) */
@@ -735,14 +765,14 @@ tbody tr[class~="bg-white/60"] > td:first-child {
   }
 
   /* Primary label picks up the accent */
-  tbody tr:not(:has(> td[colspan])):hover [class~="text-[#163b5b]"][class~="font-semibold"] {
-    color: var(--color-teal);
+  tbody tr:not(:has(> td[colspan])):hover [class~="text-ink"][class~="font-semibold"] {
+    color: var(--color-primary-dark);
   }
 
   /* File / certificate icon tiles and avatars pop */
   tbody tr:not(:has(> td[colspan])):hover [class~="shrink-0"]:is([class~="ring-white/50"], [class~="bg-gradient-to-br"]) {
     transform: scale(1.1) rotate(-6deg);
-    box-shadow: 0 6px 14px -8px rgba(23, 59, 89, 0.45);
+    box-shadow: 0 6px 14px -8px rgba(17, 24, 39, 0.45);
   }
 
   /* Row actions rest softer and come forward on hover */
@@ -765,5 +795,208 @@ tbody tr[class~="bg-white/60"] > td:first-child {
   tbody tr:hover > td:first-child > *,
   tbody tr:hover [class~="shrink-0"] {
     transform: none !important;
+  }
+}
+
+/* ============================================================
+   Auth card — animated "double slider" sign in / sign up.
+   Uses the Academia palette (primary-dark -> primary) instead of the red demo.
+   ============================================================ */
+
+.auth-input {
+  width: 100%;
+  margin-top: 10px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(17, 24, 39, 0.12);
+  background: var(--background);
+  font-size: 13px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.auth-input::placeholder {
+  color: rgba(17, 24, 39, 0.4);
+}
+
+.auth-input:focus {
+  border-color: var(--color-primary-dark);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(8, 124, 154, 0.18);
+}
+
+.auth-btn {
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 11px 42px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(120deg, var(--color-primary-dark), var(--color-primary));
+  box-shadow: 0 10px 22px -10px rgba(8, 124, 154, 0.7);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.auth-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+  box-shadow: 0 14px 26px -10px rgba(8, 124, 154, 0.85);
+}
+
+.auth-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.auth-ghost-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  padding: 10px 42px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.auth-ghost-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+}
+
+.auth-ghost-btn:active {
+  transform: scale(0.97);
+}
+
+/* ---- Sliding mechanics ---- */
+
+/* Both forms transition their horizontal position + opacity. */
+.auth-pane {
+  transition: transform 0.6s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+/* Sign In visible by default, Sign Up hidden behind. */
+.auth-pane--signin {
+  z-index: 2;
+}
+.auth-pane--signup {
+  z-index: 1;
+  opacity: 0;
+}
+
+/* When Sign Up is active, slide both panes to the right and swap layers. */
+.auth-card.is-signup .auth-pane--signin {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 1;
+}
+.auth-card.is-signup .auth-pane--signup {
+  transform: translateX(-100%);
+  opacity: 1;
+  z-index: 5;
+  animation: authShow 0.6s;
+}
+
+@keyframes authShow {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+/* ---- Overlay ---- */
+.auth-overlay-container {
+  z-index: 100;
+  transition: transform 0.6s ease-in-out;
+}
+.auth-card.is-signup .auth-overlay-container {
+  transform: translateX(-100%);
+}
+
+.auth-overlay {
+  background: linear-gradient(120deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+  color: #ffffff;
+  transition: transform 0.6s ease-in-out;
+}
+.auth-card.is-signup .auth-overlay {
+  transform: translateX(50%);
+}
+
+.auth-overlay-panel {
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Left panel starts pushed off-screen, right panel starts in place. */
+.auth-overlay--left {
+  transform: translateX(-20%);
+}
+.auth-card.is-signup .auth-overlay--left {
+  transform: translateX(0);
+}
+.auth-overlay--right {
+  transform: translateX(0);
+}
+.auth-card.is-signup .auth-overlay--right {
+  transform: translateX(20%);
+}
+
+/* Decorative accent glow inside the overlay */
+.auth-overlay::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  right: -20%;
+  width: 60%;
+  height: 60%;
+  border-radius: 999px;
+  background: rgba(242, 162, 58, 0.35);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+/* Text link that switches forms; only needed once the overlay is hidden. */
+.auth-switch {
+  display: none;
+}
+
+/* ---- Mobile: stack instead of slide ---- */
+@media (max-width: 640px) {
+  .auth-switch {
+    display: block;
+  }
+  .auth-card {
+    height: auto;
+    min-height: 560px;
+  }
+  .auth-overlay-container {
+    display: none;
+  }
+  .auth-pane {
+    position: relative;
+    width: 100%;
+    padding: 64px 24px 32px;
+  }
+  .auth-pane--signup {
+    display: none;
+  }
+  .auth-card.is-signup .auth-pane--signin {
+    display: none;
+  }
+  .auth-card.is-signup .auth-pane--signup {
+    display: flex;
+    transform: none;
+    opacity: 1;
   }
 }

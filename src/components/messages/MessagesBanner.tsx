@@ -6,14 +6,14 @@ import { useI18n } from "@/i18n/I18nProvider";export default function MessagesBa
 
   return (
     <section className="glass motion hover-lift relative min-h-[110px] overflow-hidden rounded-2xl flex flex-col justify-center">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/70 via-sky-light/40 to-sky/40" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-teal/25 to-transparent" />
-      <div className="animate-floaty pointer-events-none absolute -bottom-10 right-24 h-24 w-72 rounded-[50%] bg-teal/25 blur-2xl" />
-      <div className="animate-floaty-slow pointer-events-none absolute -bottom-12 right-0 h-24 w-56 rounded-[50%] bg-gold/25 blur-2xl" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/70 via-primary/40 to-primary/40" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-primary-dark/25 to-transparent" />
+      <div className="animate-floaty pointer-events-none absolute -bottom-10 right-24 h-24 w-72 rounded-[50%] bg-primary-dark/25 blur-2xl" />
+      <div className="animate-floaty-slow pointer-events-none absolute -bottom-12 right-0 h-24 w-56 rounded-[50%] bg-accent/25 blur-2xl" />
 
       <div className="relative z-10 flex items-center justify-between gap-4 px-5 py-5 sm:px-8">
         <div>
-          <h1 className="bg-gradient-to-r from-[#0f3552] to-[#2c6d80] bg-clip-text text-[22px] font-bold sm:text-[26px] text-transparent">
+          <h1 className="bg-gradient-to-r from-sidebar to-primary-dark bg-clip-text text-[22px] font-bold sm:text-[26px] text-transparent">
             {t("Messages")}</h1>
           <p className="mt-1 text-[12px] text-slate-500">
             {t("Stay connected with your consultant, project team, and Academia support.")}</p>

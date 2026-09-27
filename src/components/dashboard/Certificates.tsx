@@ -14,10 +14,10 @@ export default function Certificates() {
   return (
     <section className="glass motion hover-lift rounded-2xl p-4 sm:p-6">
       <div className="flex items-center justify-between gap-2">
-        <h2 className="text-[15px] font-semibold text-[#163b5b]">
+        <h2 className="text-[15px] font-semibold text-ink">
           {t("Certificates")}</h2>
 
-        <button className="shrink-0 rounded-full px-3 py-1 text-[12px] font-medium text-teal transition-colors hover:bg-teal/10">
+        <button className="shrink-0 rounded-full px-3 py-1 text-[12px] font-medium text-primary-dark transition-colors hover:bg-primary-dark/10">
           {t("View All")}</button>
       </div>
 

@@ -21,9 +21,9 @@ const iconByTone: Record<ReportSummaryStat["tone"], LucideIcon> = {
 };
 
 const styleByTone: Record<ReportSummaryStat["tone"], string> = {
-  teal: "bg-teal/15 text-teal",
+  teal: "bg-primary-dark/15 text-primary-dark",
   green: "bg-emerald-100/70 text-emerald-600",
-  amber: "bg-orange/15 text-orange",
+  amber: "bg-accent-dark/15 text-accent-dark",
   rose: "bg-rose-100/70 text-rose-600",
 };
 
@@ -31,14 +31,14 @@ export default function ReportStats() {
   const { t } = useI18n();
 
   return (
-    <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <section className="grid grid-cols-2 gap-3 lg:grid-cols-4">
       {reportSummaryStats.map((stat) => {
         const Icon = iconByTone[stat.tone];
 
         return (
           <div
             key={stat.id}
-            className="glass motion hover-lift flex h-[76px] items-center gap-3 rounded-2xl px-4"
+            className="glass motion hover-lift flex h-[76px] items-center gap-3 rounded-2xl px-3 sm:px-4"
           >
             <div
               className={`card-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ring-1 ring-inset ring-white/50 ${styleByTone[stat.tone]}`}
@@ -48,7 +48,7 @@ export default function ReportStats() {
 
             <div className="min-w-0 flex-1">
               <div className="flex items-baseline gap-2">
-                <p className="text-[20px] font-bold leading-none text-[#163b5b]">
+                <p className="text-[20px] font-bold leading-none text-ink">
                   {stat.value}
                 </p>
                 {stat.trend && (

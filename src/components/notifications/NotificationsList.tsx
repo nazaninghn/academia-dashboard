@@ -55,7 +55,7 @@ export default function NotificationsList() {
     <div className="space-y-4">
       {/* Filter tabs + Mark all as read */}
       <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="-mx-4 flex items-center gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0 [&::-webkit-scrollbar]:hidden">
           {notificationFilters.map((filter) => {
             const isActive = filter.key === activeFilter;
             const Icon = filterIcon[filter.key] ?? CalendarDays;
@@ -64,10 +64,10 @@ export default function NotificationsList() {
               <button
                 key={filter.key}
                 onClick={() => setActiveFilter(filter.key)}
-                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors ${
+                className={`flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] transition-colors ${
                   isActive
-                    ? "bg-teal text-white shadow-sm"
-                    : "border border-white/60 bg-white/60 text-slate-600 hover:bg-white/90"
+                    ? "bg-primary font-bold text-white shadow-sm"
+                    : "font-medium border border-white/60 bg-white/60 text-slate-600 hover:bg-white/90"
                 }`}
               >
                 <Icon size={13} />
@@ -86,7 +86,7 @@ export default function NotificationsList() {
           })}
         </div>
 
-        <button className="flex shrink-0 items-center gap-2 rounded-full border border-teal/30 bg-teal/10 px-3.5 py-2 text-[12px] font-semibold text-teal shadow-sm transition-colors hover:bg-teal/20">
+        <button className="flex shrink-0 items-center gap-2 rounded-full border border-primary-dark/30 bg-primary-dark/10 px-3.5 py-2 text-[12px] font-bold text-primary-dark shadow-sm transition-colors hover:bg-primary-dark/20">
           <CheckCheck size={15} />
           {t("Mark all as read")}</button>
       </div>
@@ -95,7 +95,7 @@ export default function NotificationsList() {
       <section className="glass rounded-2xl p-4">
         {groups.map(({ group, items }) => (
           <div key={group} className="mb-4 last:mb-0">
-            <p className="px-3 pb-1 text-[12px] font-semibold text-[#163b5b]">
+            <p className="px-3 pb-1 text-[12px] font-semibold text-ink">
               {t(group)}
             </p>
             <div className="space-y-1">

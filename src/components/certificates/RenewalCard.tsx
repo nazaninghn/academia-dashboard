@@ -17,7 +17,7 @@ export default function RenewalCard() {
           <Clock size={18} />
         </div>
         <div>
-          <h3 className="text-[13px] font-semibold text-[#163b5b]">
+          <h3 className="text-[13px] font-semibold text-ink">
             {t("Certificate Renewal")}</h3>
           <p className="mt-1 text-[11px] text-slate-500">
             {t("Stay compliant without interruption.")}</p>
@@ -30,7 +30,7 @@ export default function RenewalCard() {
         {after}
       </p>
 
-      <button className="mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-teal px-4 py-2.5 text-[12px] font-semibold text-white shadow-sm transition-colors hover:bg-[#3f8291]">
+      <button className="mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-4 py-2.5 text-[12px] font-bold text-white shadow-sm transition-colors hover:bg-primary-dark">
         {t("Start Renewal Process")}<ArrowRight size={15} />
       </button>
     </section>

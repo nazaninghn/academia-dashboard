@@ -17,12 +17,12 @@ export default function ProjectRow({ project, icon }: ProjectRowProps) {
   return (
     <div className="glass-row motion hover-row flex flex-col gap-3 rounded-2xl p-4 lg:flex-row lg:items-center lg:gap-4">
       <div className="flex items-center gap-4">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal/15 text-teal ring-1 ring-inset ring-teal/20 shadow-[0_0_16px_-4px_rgba(78,151,167,0.5)]">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-dark/15 text-primary-dark ring-1 ring-inset ring-primary-dark/20 shadow-[0_0_16px_-4px_rgba(8,124,154,0.5)]">
           {icon}
         </div>
 
         <div className="min-w-0 flex-1 lg:w-40 lg:flex-none">
-          <p className="truncate text-[13px] font-semibold text-[#163b5b]">
+          <p className="truncate text-[13px] font-semibold text-ink">
             {t(project.name)}
           </p>
           <p className="mt-1 text-[10px] text-slate-500">{t(project.category)}</p>
@@ -30,7 +30,7 @@ export default function ProjectRow({ project, icon }: ProjectRowProps) {
 
         <ArrowRight
           size={15}
-          className="shrink-0 text-teal transition-transform group-hover:translate-x-0.5 lg:hidden"
+          className="shrink-0 text-primary-dark transition-transform group-hover:translate-x-0.5 lg:hidden"
         />
       </div>
 
@@ -58,7 +58,7 @@ export default function ProjectRow({ project, icon }: ProjectRowProps) {
 
       <ArrowRight
         size={15}
-        className="ml-auto hidden shrink-0 text-teal transition-transform group-hover:translate-x-0.5 lg:block"
+        className="ml-auto hidden shrink-0 text-primary-dark transition-transform group-hover:translate-x-0.5 lg:block"
       />
     </div>
   );

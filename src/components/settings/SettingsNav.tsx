@@ -53,18 +53,18 @@ export default function SettingsNav({ activeKey, onSelect }: SettingsNavProps) {
                 onClick={() => onSelect(item.key)}
                 className={`flex w-full items-center gap-2 whitespace-nowrap rounded-xl px-3 py-2 text-left transition-colors lg:gap-3 lg:whitespace-normal lg:py-2.5 ${
                   isActive
-                    ? "bg-sky-light/50 ring-1 ring-inset ring-sky/40"
+                    ? "bg-primary/50 ring-1 ring-inset ring-primary/40"
                     : "hover:bg-white/50"
                 }`}
               >
                 <Icon
                   size={17}
-                  className={isActive ? "text-teal" : "text-slate-400"}
+                  className={isActive ? "text-primary-dark" : "text-slate-400"}
                 />
                 <div className="min-w-0">
                   <p
                     className={`text-[12.5px] font-semibold ${
-                      isActive ? "text-teal" : "text-[#163b5b]"
+                      isActive ? "text-primary-dark" : "text-ink"
                     }`}
                   >
                     {t(item.label)}

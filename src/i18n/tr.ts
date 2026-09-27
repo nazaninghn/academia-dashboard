@@ -657,4 +657,22 @@ export const tr: Record<string, string> = {
   "Delete Account": "Hesabı Sil",
   "Sustainability Program": "Sürdürülebilirlik Programı",
   "Sustainability Performance": "Sürdürülebilirlik Performansı",
+
+  // ---- Login / registration ----
+  "Sign In": "Giriş Yap",
+  "Sign Up": "Kayıt Ol",
+  "Create Account": "Hesap Oluştur",
+  "or use your email & password": "veya e-posta ve şifrenizi kullanın",
+  "or use your email for registration": "veya kayıt için e-postanızı kullanın",
+  Password: "Şifre",
+  "Forgot your password?": "Şifrenizi mi unuttunuz?",
+  "Don't have an account?": "Hesabınız yok mu?",
+  "Already have an account?": "Zaten hesabınız var mı?",
+  "Welcome Back": "Tekrar Hoş Geldiniz",
+  "Already have an account? Sign in to reach your Academia dashboard.": "Zaten hesabınız var mı? Academia panelinize ulaşmak için giriş yapın.",
+  "Hello, Partner": "Merhaba, Ortağımız",
+  "New here? Create an account and start your sustainable journey.": "Yeni misiniz? Bir hesap oluşturun ve sürdürülebilir yolculuğunuza başlayın.",
+  "Continue with {name}": "{name} ile devam et",
+  "Sign in or create your Academia account.": "Academia hesabınıza giriş yapın veya yeni bir hesap oluşturun.",
+  "Your Partner in a Sustainable Future": "Sürdürülebilir Bir Gelecekte Ortağınız",
 };

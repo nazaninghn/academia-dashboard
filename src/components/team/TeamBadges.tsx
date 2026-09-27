@@ -5,7 +5,7 @@ import { useI18n } from "@/i18n/I18nProvider";
 
 const roleStyle: Record<TeamRole, string> = {
   "Company Admin": "bg-violet-100/80 text-violet-600",
-  Manager: "bg-sky/20 text-teal",
+  Manager: "bg-primary/20 text-primary-dark",
   User: "bg-slate-200/70 text-slate-600",
   Viewer: "bg-amber-100/70 text-amber-600",
 };

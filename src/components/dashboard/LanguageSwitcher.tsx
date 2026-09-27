@@ -27,10 +27,10 @@ export default function LanguageSwitcher() {
             onClick={() => setLocale(code)}
             aria-pressed={isActive}
             title={names[code]}
-            className={`rounded-full px-2.5 py-1 text-[11px] font-semibold transition-colors ${
+            className={`rounded-full px-2.5 py-1 text-[11px] transition-colors ${
               isActive
-                ? "bg-teal text-white shadow-sm"
-                : "text-slate-500 hover:text-teal"
+                ? "bg-primary font-bold text-white shadow-sm"
+                : "font-semibold text-slate-500 hover:text-primary-dark"
             }`}
           >
             {labels[code]}

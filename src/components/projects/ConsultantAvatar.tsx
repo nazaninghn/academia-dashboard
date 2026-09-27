@@ -2,10 +2,10 @@
 
 
 import { useI18n } from "@/i18n/I18nProvider";const gradients = [
-  "from-teal to-sky",
-  "from-sky to-teal",
-  "from-orange to-gold",
-  "from-emerald-400 to-teal",
+  "from-primary-dark to-primary",
+  "from-primary to-primary-dark",
+  "from-accent-dark to-accent",
+  "from-emerald-400 to-primary-dark",
   "from-slate-400 to-slate-600",
 ];
 

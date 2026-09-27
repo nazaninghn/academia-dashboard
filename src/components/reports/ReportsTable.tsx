@@ -55,7 +55,7 @@ export default function ReportsTable() {
   return (
     <section className="glass rounded-2xl p-4 sm:p-5">
       {/* Filter tabs */}
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="-mx-4 flex items-center gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0 [&::-webkit-scrollbar]:hidden">
         {reportFilters.map((filter) => {
           const isActive = filter.key === activeFilter;
 
@@ -63,10 +63,10 @@ export default function ReportsTable() {
             <button
               key={filter.key}
               onClick={() => setActiveFilter(filter.key)}
-              className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors ${
+              className={`flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] transition-colors ${
                 isActive
-                  ? "bg-teal text-white shadow-sm"
-                  : "border border-white/60 bg-white/60 text-slate-600 hover:bg-white/90"
+                  ? "bg-primary font-bold text-white shadow-sm"
+                  : "font-medium border border-white/60 bg-white/60 text-slate-600 hover:bg-white/90"
               }`}
             >
               {t(filter.label)}
@@ -111,14 +111,58 @@ export default function ReportsTable() {
           <Calendar size={14} />
           {t("Select date range")}</button>
 
-        <button className="ml-auto flex items-center gap-2 rounded-full border border-teal/30 bg-teal/10 px-3.5 py-2 text-[12px] font-semibold text-teal shadow-sm transition-colors hover:bg-teal/20">
+        <button className="ml-auto flex items-center gap-2 rounded-full border border-primary-dark/30 bg-primary-dark/10 px-3.5 py-2 text-[12px] font-bold text-primary-dark shadow-sm transition-colors hover:bg-primary-dark/20">
           <Download size={14} />
           {t("Export")}<ChevronDown size={13} />
         </button>
       </div>
 
-      {/* Table */}
-      <div className="mt-4 overflow-x-auto">
+      {/* Phones: stacked cards instead of the wide table */}
+      <ul className="mt-4 space-y-2 md:hidden">
+        {filtered.map((report) => (
+          <li
+            key={report.id}
+            className="rounded-xl border border-white/60 bg-white/50 p-3"
+          >
+            <div className="flex items-start gap-2.5">
+              <ReportFileIcon kind={report.fileKind} />
+              <div className="min-w-0 flex-1">
+                <p className="text-[13px] font-semibold text-ink">
+                  {t(report.name)}
+                </p>
+                <p className="truncate text-[11px] text-slate-500">
+                  {t(report.project)} · {t(report.date)}
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-2.5 flex flex-wrap items-center gap-2">
+              <ReportTypeBadge type={report.type} />
+              <ReportStatusBadge status={report.status} />
+            </div>
+
+            <div className="mt-3 flex items-center gap-2 border-t border-white/60 pt-2">
+              <button className="inline-flex flex-1 items-center justify-center gap-1 rounded-lg px-2 py-1.5 text-[11.5px] font-medium text-primary-dark transition-colors hover:bg-white/70">
+                <Eye size={14} />
+                {t("View")}
+              </button>
+              <button className="inline-flex flex-1 items-center justify-center gap-1 rounded-lg px-2 py-1.5 text-[11.5px] font-medium text-slate-500 transition-colors hover:bg-white/70 hover:text-primary-dark">
+                <Download size={14} />
+                {t("Download")}
+              </button>
+            </div>
+          </li>
+        ))}
+
+        {filtered.length === 0 && (
+          <li className="py-10 text-center text-[12px] text-slate-400">
+            {t("No reports match your filters.")}
+          </li>
+        )}
+      </ul>
+
+      {/* Table (tablet and up) */}
+      <div className="mt-4 hidden overflow-x-auto md:block">
         <table className="w-full min-w-[820px] border-collapse">
           <thead>
             <tr className="border-b border-white/60 text-left text-[11px] font-semibold uppercase tracking-wide text-slate-400">
@@ -142,7 +186,7 @@ export default function ReportsTable() {
                   <div className="flex items-center gap-2.5">
                     <ReportFileIcon kind={report.fileKind} />
                     <div className="min-w-0">
-                      <p className="truncate text-[12.5px] font-semibold text-[#163b5b]">
+                      <p className="truncate text-[12.5px] font-semibold text-ink">
                         {t(report.name)}
                       </p>
                       <p className="truncate text-[10px] text-slate-400">
@@ -180,10 +224,10 @@ export default function ReportsTable() {
                 {/* Actions */}
                 <td className="px-3 py-3">
                   <div className="flex items-center justify-end gap-1">
-                    <button className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[11px] font-medium text-teal transition-colors hover:bg-white/70">
+                    <button className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[11px] font-medium text-primary-dark transition-colors hover:bg-white/70">
                       <Eye size={14} />
                       {t("View")}</button>
-                    <button className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[11px] font-medium text-slate-500 transition-colors hover:bg-white/70 hover:text-teal">
+                    <button className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[11px] font-medium text-slate-500 transition-colors hover:bg-white/70 hover:text-primary-dark">
                       <Download size={14} />
                       {t("Download")}</button>
                     <button
@@ -211,7 +255,7 @@ export default function ReportsTable() {
       </div>
 
       {/* Footer: count + pagination */}
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+      <div className="mt-4 flex flex-col-reverse items-center justify-between gap-3 sm:flex-row">
         <p className="text-[11px] text-slate-400">
           {t("Showing 1-{shown} of {total} reports", {
             shown: filtered.length,
@@ -226,7 +270,7 @@ export default function ReportsTable() {
           >
             <ChevronLeft size={15} />
           </button>
-          <button className="flex h-7 w-7 items-center justify-center rounded-lg bg-teal text-[12px] font-semibold text-white">
+          <button className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-[12px] font-bold text-white">
             1
           </button>
           <button className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/60 bg-white/60 text-[12px] font-medium text-slate-500 transition-colors hover:bg-white/90">

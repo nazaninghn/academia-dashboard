@@ -41,7 +41,7 @@ export default function TaskDetailPanel({
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <TaskStatusBadge status={task.status} />
-            <h3 className="mt-2 text-[15px] font-semibold text-[#163b5b]">
+            <h3 className="mt-2 text-[15px] font-semibold text-ink">
               {t(task.title)}
             </h3>
             <p className="mt-1 text-[11px] leading-5 text-slate-500">
@@ -75,7 +75,7 @@ export default function TaskDetailPanel({
                 onClick={() => setActiveTab(tab)}
                 className={`relative flex items-center gap-1 pb-1.5 font-medium transition-colors ${
                   isActive
-                    ? "text-teal"
+                    ? "text-primary-dark"
                     : "text-slate-400 hover:text-slate-600"
                 }`}
               >
@@ -86,7 +86,7 @@ export default function TaskDetailPanel({
                   </span>
                 )}
                 {isActive && (
-                  <span className="absolute inset-x-0 -bottom-px h-0.5 rounded-full bg-teal" />
+                  <span className="absolute inset-x-0 -bottom-px h-0.5 rounded-full bg-primary" />
                 )}
               </button>
             );
@@ -119,7 +119,7 @@ export default function TaskDetailPanel({
                 <div className="mt-1.5 flex items-center gap-2">
                   <ConsultantAvatar name={task.assignee.name} />
                   <div>
-                    <p className="text-[12px] font-medium text-[#163b5b]">
+                    <p className="text-[12px] font-medium text-ink">
                       {t(task.assignee.name)}
                     </p>
                     <p className="text-[10px] text-slate-400">
@@ -144,13 +144,13 @@ export default function TaskDetailPanel({
             {/* Subtasks */}
             <div className="border-t border-white/50 pt-4">
               <div className="flex items-center justify-between">
-                <p className="text-[12px] font-semibold text-[#163b5b]">
+                <p className="text-[12px] font-semibold text-ink">
                   {t("Subtasks")}{" "}
                   <span className="text-slate-400">
                     ({doneCount}/{task.subtasks.length})
                   </span>
                 </p>
-                <button className="flex items-center gap-1 text-[11px] font-medium text-teal hover:underline">
+                <button className="flex items-center gap-1 text-[11px] font-medium text-primary-dark hover:underline">
                   <Plus size={12} />
                   {t("Add Subtask")}</button>
               </div>
@@ -210,7 +210,7 @@ function SubtaskItem({ label, done }: { label: string; done: boolean }) {
         type="checkbox"
         checked={checked}
         onChange={() => setChecked((v) => !v)}
-        className="h-4 w-4 shrink-0 rounded border-slate-300 accent-teal"
+        className="h-4 w-4 shrink-0 rounded border-slate-300 accent-primary-dark"
       />
       <span
         className={`text-[11.5px] ${

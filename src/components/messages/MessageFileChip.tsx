@@ -16,7 +16,7 @@ const configByKind: Record<
   { icon: LucideIcon; style: string }
 > = {
   pdf: { icon: FileText, style: "bg-rose-100/80 text-rose-600" },
-  doc: { icon: FileType2, style: "bg-sky/25 text-teal" },
+  doc: { icon: FileType2, style: "bg-primary/25 text-primary-dark" },
   xls: { icon: FileSpreadsheet, style: "bg-emerald-100/80 text-emerald-600" },
 };
 
@@ -39,7 +39,7 @@ export default function MessageFileChip({
         <Icon size={16} />
       </div>
       <div className="min-w-0 flex-1">
-        <p className="truncate text-[11.5px] font-medium text-[#163b5b]">
+        <p className="truncate text-[11.5px] font-medium text-ink">
           {t(file.name)}
         </p>
         <p className="truncate text-[10px] text-slate-400">{t(file.size)}</p>
@@ -47,7 +47,7 @@ export default function MessageFileChip({
       {variant === "chat" && (
         <button
           aria-label={t("Download {name}", { name: file.name })}
-          className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/70 hover:text-teal"
+          className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/70 hover:text-primary-dark"
         >
           <Download size={15} />
         </button>

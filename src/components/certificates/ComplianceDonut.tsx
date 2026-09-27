@@ -33,7 +33,7 @@ export default function ComplianceDonut() {
 
   return (
     <section className="glass motion hover-lift rounded-2xl p-4 sm:p-5">
-      <h3 className="text-[13px] font-semibold text-[#163b5b]">
+      <h3 className="text-[13px] font-semibold text-ink">
         {t("Compliance Status")}</h3>
 
       <div className="mt-3 flex items-center gap-5">
@@ -51,7 +51,7 @@ export default function ComplianceDonut() {
               cy={SIZE / 2}
               r={RADIUS}
               fill="none"
-              stroke="#e2e8f0"
+              stroke="#E5E7EB"
               strokeWidth={STROKE}
             />
             {/* Segments */}
@@ -73,7 +73,7 @@ export default function ComplianceDonut() {
 
           {/* Center label */}
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-[22px] font-bold leading-none text-[#163b5b]">
+            <span className="text-[22px] font-bold leading-none text-ink">
               {compliancePercent}%
             </span>
           </div>
@@ -88,7 +88,7 @@ export default function ComplianceDonut() {
                 style={{ backgroundColor: segment.color }}
               />
               <span className="text-[11.5px] text-slate-600">
-                <span className="font-semibold text-[#163b5b]">
+                <span className="font-semibold text-ink">
                   {segment.value}
                 </span>{" "}
                 {t(segment.label)}

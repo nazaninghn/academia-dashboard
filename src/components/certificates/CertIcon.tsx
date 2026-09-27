@@ -14,12 +14,12 @@ const configByKind: Record<
   CertificateKind,
   { icon: LucideIcon; style: string }
 > = {
-  quality: { icon: Globe, style: "bg-sky/25 text-teal" },
+  quality: { icon: Globe, style: "bg-primary/25 text-primary-dark" },
   environment: { icon: Leaf, style: "bg-emerald-100/80 text-emerald-600" },
   safety: { icon: ShieldCheck, style: "bg-amber-100/80 text-amber-600" },
-  carbon: { icon: Cloud, style: "bg-teal/15 text-teal" },
-  esg: { icon: BarChart3, style: "bg-orange/15 text-orange" },
-  supply: { icon: Link2, style: "bg-sky/25 text-teal" },
+  carbon: { icon: Cloud, style: "bg-primary-dark/15 text-primary-dark" },
+  esg: { icon: BarChart3, style: "bg-accent-dark/15 text-accent-dark" },
+  supply: { icon: Link2, style: "bg-primary/25 text-primary-dark" },
 };
 
 export default function CertIcon({ kind }: { kind: CertificateKind }) {

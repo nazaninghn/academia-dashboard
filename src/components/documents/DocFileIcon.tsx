@@ -7,7 +7,7 @@ const configByKind: Record<
   { icon: LucideIcon; style: string }
 > = {
   pdf: { icon: FileText, style: "bg-rose-100/80 text-rose-600" },
-  doc: { icon: FileType2, style: "bg-sky/25 text-teal" },
+  doc: { icon: FileType2, style: "bg-primary/25 text-primary-dark" },
   xls: { icon: FileSpreadsheet, style: "bg-emerald-100/80 text-emerald-600" },
 };
 

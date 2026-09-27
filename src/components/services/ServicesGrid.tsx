@@ -53,10 +53,10 @@ export default function ServicesGrid() {
                 <button
                   key={filter.key}
                   onClick={() => setActiveFilter(filter.key)}
-                  className={`rounded-full px-3 py-1.5 text-[11.5px] font-medium transition-colors ${
+                  className={`rounded-full px-3 py-1.5 text-[11.5px] transition-colors ${
                     isActive
-                      ? "bg-teal text-white shadow-sm"
-                      : "border border-white/60 bg-white/60 text-slate-600 hover:bg-white/90"
+                      ? "bg-primary font-bold text-white shadow-sm"
+                      : "font-medium border border-white/60 bg-white/60 text-slate-600 hover:bg-white/90"
                   }`}
                 >
                   {t(filter.label)}

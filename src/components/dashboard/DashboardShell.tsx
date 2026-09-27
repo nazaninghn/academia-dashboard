@@ -60,9 +60,9 @@ export default function DashboardShell({ children }: DashboardShellProps) {
     <div className="relative min-h-screen overflow-x-clip">
       {/* Ambient floating color orbs behind the glass */}
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="animate-floaty absolute -left-24 top-32 h-72 w-72 rounded-full bg-sky/30 blur-3xl" />
-        <div className="animate-floaty-slow absolute right-10 top-10 h-64 w-64 rounded-full bg-gold/20 blur-3xl" />
-        <div className="animate-floaty absolute bottom-10 left-1/2 h-80 w-80 rounded-full bg-teal/20 blur-3xl" />
+        <div className="animate-floaty absolute -left-24 top-32 h-72 w-72 rounded-full bg-primary/30 blur-3xl" />
+        <div className="animate-floaty-slow absolute right-10 top-10 h-64 w-64 rounded-full bg-accent/20 blur-3xl" />
+        <div className="animate-floaty absolute bottom-10 left-1/2 h-80 w-80 rounded-full bg-primary-dark/20 blur-3xl" />
       </div>
 
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />

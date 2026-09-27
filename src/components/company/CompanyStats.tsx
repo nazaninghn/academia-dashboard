@@ -22,10 +22,10 @@ const iconByKind: Record<CompanyStatKind, LucideIcon> = {
 };
 
 const styleByKind: Record<CompanyStatKind, string> = {
-  employees: "bg-sky/25 text-teal",
-  projects: "bg-orange/15 text-orange",
+  employees: "bg-primary/25 text-primary-dark",
+  projects: "bg-accent-dark/15 text-accent-dark",
   certificates: "bg-emerald-100/70 text-emerald-600",
-  locations: "bg-teal/15 text-teal",
+  locations: "bg-primary-dark/15 text-primary-dark",
   established: "bg-violet-100/70 text-violet-600",
 };
 
@@ -33,7 +33,7 @@ export default function CompanyStats() {
   const { t } = useI18n();
 
   return (
-    <section className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+    <section className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-5">
       {companyStats.map((stat) => {
         const Icon = iconByKind[stat.kind];
 
@@ -49,7 +49,7 @@ export default function CompanyStats() {
             </div>
 
             <div className="min-w-0">
-              <p className="text-[20px] font-bold leading-none text-[#163b5b]">
+              <p className="text-[20px] font-bold leading-none text-ink">
                 {t(stat.value)}
               </p>
               <p className="mt-1.5 truncate text-[11px] text-slate-500">

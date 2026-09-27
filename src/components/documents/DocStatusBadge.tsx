@@ -26,7 +26,7 @@ const configByStatus: Record<
   },
   Required: {
     icon: FileUp,
-    style: "bg-sky/20 text-teal ring-sky/30",
+    style: "bg-primary/20 text-primary-dark ring-primary/30",
   },
   Rejected: {
     icon: XCircle,
